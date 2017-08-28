@@ -1,0 +1,58 @@
+{
+  "name": "newscats",
+  "version": "0.0.1",
+  "license": "Apache-2.0",
+  "homepage": "https://github.com/fxdemolisher/newscat",
+  "private": false,
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/fxdemolisher/newscats"
+  },
+  "scripts": {
+    "postinstall": "sed 's/#import <RCTAnimation\\/RCTValueAnimatedNode.h>/#import \"RCTValueAnimatedNode.h\"/' < ./node_modules/react-native/Libraries/NativeAnimation/RCTNativeAnimatedNodesManager.h > tmp.h && mv tmp.h ./node_modules/react-native/Libraries/NativeAnimation/RCTNativeAnimatedNodesManager.h",
+    "start": "node node_modules/react-native/local-cli/cli.js start"
+  },
+  "dependencies": {
+    "babel-preset-es2015": "^6.24.1",
+    "babel-preset-react-native": "^2.1.0",
+    "babel-root-slash-import": "^1.1.0",
+    "color": "^2.0.0",
+    "moment": "^2.18.1",
+    "react": "16.0.0-alpha.12",
+    "react-mixin": "^3.1.0",
+    "react-native": "^0.47.2",
+    "react-native-linear-gradient": "^2.3.0",
+    "react-navigation": "^1.0.0-beta.12",
+    "react-redux": "^5.0.6",
+    "react-timer-mixin": "^0.13.3",
+    "redux": "^3.7.2",
+    "redux-action-buffer": "^1.1.0",
+    "redux-persist": "^4.9.1",
+    "redux-persist-migrate": "^4.1.0",
+    "redux-thunk": "^2.2.0",
+    "uuid": "^3.1.0"
+  },
+  "babel": {
+    "plugins": [
+      [
+        "babel-root-slash-import",
+        {
+          "rootPathSuffix": "js"
+        }
+      ]
+    ],
+    "presets": [
+      "react-native"
+    ]
+  },
+  "jest": {
+    "preset": "jest-expo",
+    "modulePathIgnorePatterns": [
+      "/node_modules/.*/react-native/",
+      "/node_modules/.*/react/"
+    ],
+    "transformIgnorePatterns": [
+      "/node_modules/(?!react-native|react-navigation)/"
+    ]
+  }
+}

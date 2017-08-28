@@ -1,0 +1,124 @@
+apply plugin: "com.android.application"
+
+import com.android.build.OutputFile
+
+/**
+ * Set up for React Native.
+ *
+ * NOTE: Must appear above the apply statement.
+ * REFERENCE: https://github.com/facebook/react-native/blob/master/local-cli/templates/HelloWorld/android/app/build.gradle
+ */
+project.ext.react = [
+    entryFile: 'js/index.android.js',
+    bundleInDebug: true,
+    bundleInRelease: true,
+    nodeExecutableAndArgs: ['/usr/local/bin/node'],
+]
+
+apply from: "../../node_modules/react-native/react.gradle"
+
+/**
+ * Set this to true to create two separate APKs instead of one:
+ *   - An APK that only works on ARM devices
+ *   - An APK that only works on x86 devices
+ * The advantage is the size of the APK is reduced by about 4MB.
+ * Upload all the APKs to the Play Store and people will download
+ * the correct one based on the CPU architecture of their device.
+ */
+def enableSeparateBuildPerCPUArchitecture = false
+
+/**
+ * Run Proguard to shrink the Java bytecode in release builds.
+ */
+def enableProguardInReleaseBuilds = false
+
+/**
+ * Utility function for getting the current build machine's IP. Used to tell RN where to load the dev bundle from.
+ */
+def static getBuildMachineIp() {
+    def nonLoopback = []
+    NetworkInterface.getNetworkInterfaces()
+        .toList()
+        .forEach() { netInterface ->
+            if (netInterface.loopback) {
+                return
+            }
+
+            if (netInterface.name.startsWith('vbox')) {
+                return
+            }
+
+            netInterface.inetAddresses
+                .toList()
+                .forEach() { address ->
+                    if (!(address instanceof Inet4Address)) {
+                        return
+                    }
+
+                    nonLoopback.add(address.hostAddress)
+                }
+        }
+
+    return nonLoopback[0]
+}
+
+android {
+    defaultConfig {
+        applicationId = project.ext.applicationId
+        versionCode = project.ext.applicationVersionCode
+        versionName = project.ext.applicationVersionName
+
+        ndk {
+            abiFilters "armeabi-v7a", "x86"
+        }
+    }
+
+    splits {
+        abi {
+            reset()
+            enable enableSeparateBuildPerCPUArchitecture
+            universalApk false  // If true, also generate a universal APK
+            include "armeabi-v7a", "x86"
+        }
+    }
+
+    buildTypes {
+        def buildMachineIp = "\"${getBuildMachineIp()}\""
+
+        debug {
+            applicationIdSuffix ".dev"
+
+            buildConfigField "String", "ENVIRONMENT_NAME", '"debug"'
+            buildConfigField "String", "BUILD_MACHINE_IP", buildMachineIp
+        }
+        release {
+            buildConfigField "String", "ENVIRONMENT_NAME", '"release"'
+            buildConfigField "String", "BUILD_MACHINE_IP", buildMachineIp
+
+            minifyEnabled enableProguardInReleaseBuilds
+            proguardFiles getDefaultProguardFile("proguard-android.txt"), "proguard-rules.pro"
+        }
+    }
+
+    // applicationVariants are e.g. debug, release
+    applicationVariants.all { variant ->
+        variant.outputs.each { output ->
+            // For each separate APK per architecture, set a unique version code as described here:
+            // http://tools.android.com/tech-docs/new-build-system/user-guide/apk-splits
+            def versionCodes = ["armeabi-v7a":1, "x86":2]
+            def abi = output.getFilter(OutputFile.ABI)
+            if (abi != null) {  // null for the universal-debug, universal-release variants
+                output.versionCodeOverride =
+                        versionCodes.get(abi) * 1048576 + defaultConfig.versionCode
+            }
+        }
+    }
+}
+
+dependencies {
+    // Linear gradient support for RN.
+    compile project(':react-native-linear-gradient')
+
+    // React Native itself.
+    compile "com.facebook.react:react-native:+"
+}

@@ -1,0 +1,1 @@
+Drop font files here so that they are available to React Native on Android.

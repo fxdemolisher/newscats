@@ -1,0 +1,65 @@
+// Top-level build file where you can add configuration options common to all sub-projects/modules.
+
+buildscript {
+    repositories {
+        jcenter()
+    }
+    dependencies {
+        classpath 'com.android.tools.build:gradle:2.3.3'
+
+        // NOTE: Do not place your application dependencies here; they belong
+        // in the individual module build.gradle files
+    }
+}
+
+allprojects {
+    repositories {
+        mavenLocal()
+        jcenter()
+        
+        // All of React Native (JS, Obj-C sources, Android binaries) is installed from npm
+        maven { url "$rootDir/../node_modules/react-native/android" }
+        
+        // Allows adding support libraries.
+        maven { url "https://maven.google.com" }
+    }
+    
+    /**
+     * Include global project properties and expose them to every project.
+     */
+    ext {
+      // Application identity.
+      applicationId = 'com.fxdemolisher.newscats'
+      applicationVersionName = "0.0.1"
+      applicationVersionCode = 1
+    
+      // Android configuration.
+
+      compileSdkVersion = 25
+      buildToolsVersion = '25.0.3'
+      minSdkVersion = 19 // KitKat (4.4.x)
+      targetSdkVersion = 25 // Neugat (7.x)
+    }
+
+    /**
+     * Post process after the configure phase:
+     *   Set android properties for all subprojects that are either android libraries or applications.
+     *   This prevents build tools and target/compile sdk version mismatches for subprojects installed via
+     *   package managers.
+     */
+    afterEvaluate { project ->
+        // Ignore non-android projects.
+        if (!project.plugins.hasPlugin('com.android.library') &&
+                !project.plugins.hasPlugin('com.android.application')) {
+            return
+        }
+
+        def androidConfiguration = project.android
+        androidConfiguration.compileSdkVersion = project.ext.compileSdkVersion
+        androidConfiguration.buildToolsVersion = project.ext.buildToolsVersion
+
+        def defaultConfig = androidConfiguration.defaultConfig
+        defaultConfig.minSdkVersion = project.ext.minSdkVersion
+        defaultConfig.targetSdkVersion = project.ext.targetSdkVersion
+    }
+}
