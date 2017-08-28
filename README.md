@@ -25,7 +25,7 @@ This project is based on the [react-native-skeleton](https://github.com/fxdemoli
 ## TODOs:
 
 1. ~~Android first draft~~
-1. iOS first draft (mostly testing)
+1. ~~iOS first draft (mostly testing)~~
 1. Style adjustments (splash, colors, etc)
 1. Detail page tweaks (full screen preview, video player, open in browser)
 1. Video player in feed (w/ preview)
