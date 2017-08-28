@@ -2,6 +2,7 @@ const Images = {
     add: require('./icon-add.png'),
     done: require('./icon-done.png'),
     info: require('./icon-info.png'),
+    openNew: require('./icon-open-new.png'),
     paw: require('./icon-paw.png'),
     share: require('./icon-share.png'),
     remove: require('./icon-remove.png'),

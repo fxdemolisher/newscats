@@ -8,6 +8,7 @@ import {Styles} from '/styles'
 import {BaseComponent, ImageButton} from '/widgets'
 
 import * as Actions from './actions'
+import {ItemMedia} from './itemMedia'
 
 const styles = {
     card: {
@@ -62,10 +63,7 @@ class FeedItem extends BaseComponent {
     gotoDetails = () => {
         const action = NavigationActions.navigate({
             routeName: 'details',
-            params: {
-                title: this.props.item.title,
-                url: this.props.item.url
-            },
+            params: { item: this.props.item },
         })
 
         this.props.dispatch(action)
@@ -102,9 +100,11 @@ class FeedItem extends BaseComponent {
 
                 <View style={stylesheet.card}>
 
-                    <Image resizeMode="cover"
-                           source={{ uri: this.props.item.previewUrl }}
-                           style={stylesheet.itemPreview} />
+                    <View style={stylesheet.itemPreview}>
+                        <ItemMedia mediaType={this.props.item.mediaType}
+                                   url={this.props.item.previewUrl}
+                                   zoomable={false} />
+                    </View>
 
                     <View style={stylesheet.itemFooter}>
 

@@ -22,9 +22,11 @@ const styles = {
     headerTitleStyle: {
         backgroundColor: Styles.Color.Clear,
         color: Styles.Color.White,
+        flex: 0,
         fontFamily: Styles.Font.Family.RobotoMedium,
         fontSize: Styles.Font.Size.Medium,
         fontWeight: null,
+        justifyContent: 'center',
     },
 }
 

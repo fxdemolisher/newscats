@@ -1,22 +1,27 @@
 import React from 'react'
-import {Share, StyleSheet, Text, View, WebView} from 'react-native'
+import {Linking, Platform, Share, StyleSheet, Text, View, WebView} from 'react-native'
 
 import {Images} from '/images'
 import {Styles} from '/styles'
 import {BaseComponent, ImageButton} from '/widgets'
 
+import {ItemMedia} from './itemMedia'
+
 const styles = {
+    headerActions: {
+        flexDirection: 'row',
+    },
     page: {
         flex: 1,
     },
     titleContainer: {
-        alignItems: 'stretch',
-        paddingHorizontal: Styles.Size.Small,
+        justifyContent: 'center',
+        marginRight: 56, // NOTE: hack around floating title component.
     },
     title: {
         backgroundColor: Styles.Color.Clear,
         color: Styles.Color.White,
-        fontFamily: Styles.Font.Family.RobotoRegular,
+        fontFamily: Styles.Font.Family.RobotoMedium,
         fontSize: Styles.Font.Size.Small,
     },
     subTitle: {
@@ -42,9 +47,37 @@ class DetailsScreenHeader extends BaseComponent {
                 </Text>
                 <Text numberOfLines={1}
                       style={stylesheet.subTitle}>
-                    {this.props.url}
+                    {this.props.subTitle}
                 </Text>
             </View>
+        )
+    }
+}
+
+/**
+ * Component for the action (e.g. share, open source) area of the detail screen's navigation header.
+ */
+class HeaderActions extends BaseComponent {
+    shareItem = () => {
+        Share.share({
+            title: this.props.item.title,
+            message: this.props.item.url,
+        })
+    }
+
+    openItem = () => {
+        Linking.openURL(this.props.item.url)
+    }
+
+    render() {
+        return (
+            <View style={stylesheet.headerActions}>
+                <ImageButton imageSource={Images.share}
+                             onPress={this.shareItem} />
+
+                <ImageButton imageSource={Images.openNew}
+                             onPress={this.openItem} />
+             </View>
         )
     }
 }
@@ -58,33 +91,24 @@ class DetailsScreenHeader extends BaseComponent {
  */
 class DetailsScreen extends BaseComponent {
     static navigationOptions = ({navigation}) => {
-        const params = navigation.state.params
-
-        const share = () => {
-            Share.share({
-                title: params.title,
-                message: params.url,
-            })
-        }
+        const item = navigation.state.params.item
 
         return {
             gesturesEnabled: true,
             headerTitle: (
-                <DetailsScreenHeader title={params.title}
-                                     url={params.url} />
+                <DetailsScreenHeader subTitle={item.sourceTitle}
+                                     title={item.title} />
             ),
-            headerRight: (
-                <ImageButton imageSource={Images.share}
-                             onPress={share} />
-            ),
+            headerRight: (<HeaderActions item={item} />),
         }
     }
 
     render() {
+        const item = this.props.navigation.state.params.item
+
         return (
-            <WebView source={{ uri: this.props.navigation.state.params.url}}
-                     startInLoadingState={true}
-                     style={stylesheet.page} />
+            <ItemMedia mediaType={item.mediaType}
+                       url={item.mediaUrl} />
         )
     }
 }

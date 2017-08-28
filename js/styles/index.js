@@ -93,6 +93,12 @@ const Font = {
  */
 const Size = new Responsive()
     .add(
+         'XLarge',
+         Responsive.Screen.Small(24),
+         Responsive.Screen.Medium(32),
+         Responsive.Screen.Large(40)
+    )
+    .add(
          'Large',
          Responsive.Screen.Small(20),
          Responsive.Screen.Medium(24),

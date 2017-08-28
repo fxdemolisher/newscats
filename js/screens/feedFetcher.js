@@ -41,7 +41,7 @@ export function refreshSources(sources, seenKeysSet) {
 function sourceToFeed(source) {
     return fetch(source.url)
         .then((response) => (response.text()))
-        .then((responseBody) => (toFeed(source.parser, responseBody)))
+        .then((responseBody) => (toFeed(source, responseBody)))
         .catch((err) => {
             console.log("ERROR: ", err)
         })
