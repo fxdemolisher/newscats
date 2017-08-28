@@ -29,10 +29,11 @@ const styles = {
         width: 24,
     },
     sectionText: {
-        ...Styles.Text.Standard,
+        backgroundColor: Styles.Color.Clear,
         color: Styles.Color.Grey800,
-        fontSize: Styles.Font.Size.Medium,
         flex: 1,
+        fontFamily: Styles.Font.Family.RobotoRegular,
+        fontSize: Styles.Font.Size.Medium,
     },
     item: {
         alignItems: 'center',
@@ -40,15 +41,22 @@ const styles = {
         flex: 1,
     },
     itemText: {
-        ...Styles.Text.Standard,
+        backgroundColor: Styles.Color.Clear,
         color: Styles.Color.Grey700,
-        fontSize: Styles.Font.Size.Small,
         flex: 1,
+        fontFamily: Styles.Font.Family.RobotoRegular,
+        fontSize: Styles.Font.Size.Small,
     },
     itemSwitch: {
         marginLeft: Styles.Size.XSmall,
         marginRight: Styles.Size.Small,
-    }
+    },
+    itemAddButton: {
+        tintColor: Styles.Color.Grey700,
+    },
+    itemRemoveButton: {
+        tintColor: Styles.Color.Grey500,
+    },
 }
 
 const stylesheet = StyleSheet.create(styles)
@@ -85,12 +93,10 @@ class HeaderActions extends BaseComponent {
         return (
             <View style={stylesheet.headerActions}>
                 <ImageButton imageSource={Images.info}
-                             onPress={this.gotoInfo}
-                             style={Styles.Common.headerIcon} />
+                             onPress={this.gotoInfo} />
 
                 <ImageButton imageSource={Images.reset}
-                             onPress={this.fullReset}
-                             style={Styles.Common.headerIcon} />
+                             onPress={this.fullReset} />
              </View>
         )
     }
@@ -187,9 +193,9 @@ class SettingsScreen extends BaseComponent {
 
                 <Text style={stylesheet.sectionText}>{section.title}</Text>
 
-                <ImageButton imageSource={Images.add}
-                             onPress={section.addFunction}
-                             style={Styles.Common.headerIcon} />
+                <ImageButton buttonStyle={stylesheet.itemAddButton}
+                             imageSource={Images.add}
+                             onPress={section.addFunction} />
             </View>
         )
     }
@@ -229,10 +235,10 @@ class SettingsScreen extends BaseComponent {
                     {item.title}
                 </Text>
 
-                <ImageButton imageSource={Images.remove}
-                             onPress={removeItem}
-                             style={[Styles.Common.headerIcon, additionalStyle]}
-                             tintColor={Styles.Color.Grey500} />
+                <ImageButton buttonStyle={stylesheet.itemRemoveButton}
+                             containerStyle={additionalStyle}
+                             imageSource={Images.remove}
+                             onPress={removeItem} />
             </View>
         )
     }

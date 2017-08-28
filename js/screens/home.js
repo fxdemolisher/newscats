@@ -12,13 +12,8 @@ import {Feed} from './feed'
 
 const styles = {
     container: {
-        backgroundColor: Styles.Color.Grey100,
+        backgroundColor: Styles.Color.Grey300,
         flex: 1,
-    },
-    headerLogo: {
-        height: 32,
-        margin: Styles.Size.Small,
-        width: 32,
     },
     headerActions: {
         flexDirection: 'row',
@@ -30,14 +25,16 @@ const styles = {
         paddingHorizontal: Styles.Size.Medium,
     },
     emptyMain: {
-        ...Styles.Text.Standard,
+        backgroundColor: Styles.Color.Clear,
         color: Styles.Color.Grey500,
+        fontFamily: Styles.Font.Family.RobotoRegular,
         fontSize: Styles.Font.Size.Medium,
         textAlign: 'center',
     },
     emptySub: {
-        ...Styles.Text.Standard,
+        backgroundColor: Styles.Color.Clear,
         color: Styles.Color.Grey500,
+        fontFamily: Styles.Font.Family.RobotoRegular,
         fontSize: Styles.Font.Size.Small,
         textAlign: 'center',
     },
@@ -63,12 +60,10 @@ class HeaderActions extends BaseComponent {
         return (
             <View style={stylesheet.headerActions}>
                 <ImageButton imageSource={Images.paw}
-                             onPress={this.gotoFavorites}
-                             style={Styles.Common.headerIcon} />
+                             onPress={this.gotoFavorites} />
 
                 <ImageButton imageSource={Images.settings}
-                             onPress={this.gotoSettings}
-                             style={Styles.Common.headerIcon} />
+                             onPress={this.gotoSettings} />
              </View>
         )
     }
@@ -81,7 +76,6 @@ HeaderActions = connect()(HeaderActions)
  */
 class HomeScreen extends BaseComponent {
     static navigationOptions = {
-        headerBackTitle: 'Home',
         title: 'NewsCats',
         headerRight: (<HeaderActions />),
     }

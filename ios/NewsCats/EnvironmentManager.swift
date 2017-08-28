@@ -49,8 +49,7 @@ struct EnvironmentManager {
         // Build machine IP retrieval.
         let path = Bundle.main.path(forResource: "BuildEnvironment-Info", ofType: "plist")!
         let infoDict = NSDictionary(contentsOfFile: path) as! [String : Any]
-        //let buildMachineIp = infoDict["BUILD_MACHINE_IP"] as! String
-        let buildMachineIp = "192.168.0.102"
+        let buildMachineIp = infoDict["BUILD_MACHINE_IP"] as! String
         
         return Environment(
             name: name,

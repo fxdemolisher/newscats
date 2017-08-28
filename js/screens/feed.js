@@ -12,10 +12,11 @@ import * as Actions from './actions'
 const styles = {
     card: {
         backgroundColor: Styles.Color.White,
+        borderRadius: 4,
         elevation: 2,
         height: Dimensions.get('window').height * 0.75,
-        marginHorizontal: Styles.Size.XSmall,
-        marginVertical: Styles.Size.XSmall,
+        margin: Styles.Size.XSmall,
+        padding: Styles.Size.XSmall,
         shadowColor: Styles.Color.Black,
         shadowOffset: {
             height: 2,
@@ -30,17 +31,22 @@ const styles = {
     },
     itemText: {
         flex: 1,
-        padding: Styles.Size.Small
-    },
-    timestamp: {
-        ...Styles.Text.Standard,
-        color: Styles.Color.Grey600,
-        fontSize: Styles.Font.Size.XSmall,
+        paddingBottom: Styles.Size.Small,
+        paddingHorizontal: Styles.Size.Small,
+        paddingTop: Styles.Size.XSmall,
     },
     title: {
-        ...Styles.Text.Standard,
-        color: Styles.Color.Grey700,
-        fontSize: Styles.Font.Size.Medium,
+        backgroundColor: Styles.Color.Clear,
+        color: Styles.Color.Grey800,
+        fontFamily: Styles.Font.Family.RobotoMedium,
+        fontSize: Styles.Font.Size.Small,
+    },
+    timestamp: {
+        backgroundColor: Styles.Color.Clear,
+        color: Styles.Color.Grey800,
+        fontFamily: Styles.Font.Family.RobotoRegular,
+        fontSize: Styles.Font.Size.XSmall,
+        marginTop: Styles.Size.XXSmall,
     },
     itemPreview: {
         flex: 1,
@@ -83,11 +89,9 @@ class FeedItem extends BaseComponent {
     }
 
     render() {
-        const favoriteTint = (!!this.props.favorite ? Styles.Color.RedA400 : Styles.Color.Grey400)
-        const favoriteStyle = [
-            Styles.Common.headerIcon,
-            { tintColor: favoriteTint },
-        ]
+        const favoriteButtonStyle = {
+            tintColor: (!!this.props.favorite ? Styles.Color.Red600 : Styles.Color.Grey400),
+        }
 
         return (
             <TouchableWithoutFeedback accessibilityComponentType="button"
@@ -117,9 +121,9 @@ class FeedItem extends BaseComponent {
 
                         </View>
 
-                        <ImageButton imageSource={Images.paw}
-                                     onPress={this.toggleFavorite}
-                                     style={favoriteStyle} />
+                        <ImageButton buttonStyle={favoriteButtonStyle}
+                                     imageSource={Images.paw}
+                                     onPress={this.toggleFavorite} />
 
                     </View>
 

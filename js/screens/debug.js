@@ -14,8 +14,9 @@ const styles = {
         paddingVertical: Styles.Size.XSmall,
     },
     text: {
-        ...Styles.Text.Standard,
+        backgroundColor: Styles.Color.Clear,
         color: Styles.Color.Grey700,
+        fontFamily: Styles.Font.Family.RobotoRegular,
         fontSize: Styles.Font.Size.Small,
     },
     fieldValue: {

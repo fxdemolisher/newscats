@@ -16,11 +16,15 @@ import {favoritesReducer, feedReducer, seenKeysReducer, sourcesReducer} from './
 import {SettingsScreen} from './settings'
 
 const styles = {
+    headerStyle: {
+        backgroundColor: Styles.Color.Red600,
+    },
     headerTitleStyle: {
-        ...Styles.Text.Standard,
-        color: Styles.Color.Grey700,
+        backgroundColor: Styles.Color.Clear,
+        color: Styles.Color.White,
+        fontFamily: Styles.Font.Family.RobotoMedium,
         fontSize: Styles.Font.Size.Medium,
-        fontWeight: 'normal',
+        fontWeight: null,
     },
 }
 
@@ -98,6 +102,9 @@ const RootNavigation = StackNavigator(
     {
         mode: 'card',
         navigationOptions: {
+            headerBackTitle: null,
+            headerStyle: stylesheet.headerStyle,
+            headerTintColor: Styles.Color.White,
             headerTitleStyle: stylesheet.headerTitleStyle
         },
         transitionConfig: transitionConfig,

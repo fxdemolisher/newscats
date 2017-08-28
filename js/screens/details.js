@@ -14,13 +14,15 @@ const styles = {
         paddingHorizontal: Styles.Size.Small,
     },
     title: {
-        ...Styles.Text.Standard,
-        color: Styles.Color.Grey700,
+        backgroundColor: Styles.Color.Clear,
+        color: Styles.Color.White,
+        fontFamily: Styles.Font.Family.RobotoRegular,
         fontSize: Styles.Font.Size.Small,
     },
     subTitle: {
-        ...Styles.Text.Standard,
-        color: Styles.Color.Grey700,
+        backgroundColor: Styles.Color.Clear,
+        color: Styles.Color.White,
+        fontFamily: Styles.Font.Family.RobotoRegular,
         fontSize: Styles.Font.Size.XSmall,
     },
 }
@@ -73,8 +75,7 @@ class DetailsScreen extends BaseComponent {
             ),
             headerRight: (
                 <ImageButton imageSource={Images.share}
-                             onPress={share}
-                             style={Styles.Common.headerIcon} />
+                             onPress={share} />
             ),
         }
     }

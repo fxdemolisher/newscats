@@ -9,7 +9,7 @@ import {Feed} from './feed'
 
 const styles = {
     container: {
-        backgroundColor: Styles.Color.Grey100,
+        backgroundColor: Styles.Color.Grey300,
         height: '100%',
         width: '100%',
     },
@@ -20,54 +20,50 @@ const styles = {
         paddingHorizontal: Styles.Size.Medium,
     },
     emptyText: {
-        ...Styles.Text.Standard,
+        backgroundColor: Styles.Color.Clear,
         color: Styles.Color.Grey500,
+        fontFamily: Styles.Font.Family.RobotoRegular,
         fontSize: Styles.Font.Size.Medium,
         textAlign: 'center',
-    },
-    headerCount: {
-        alignItems: 'center',
-        justifyContent: 'center',
-        margin: Styles.Size.Small,
-    },
-    headerCountText: {
-        ...Styles.Text.Standard,
-        color: Styles.Color.Grey700,
-        fontSize: Styles.Font.Size.Medium,
     },
 }
 
 const stylesheet = StyleSheet.create(styles)
 
 /**
- * Component used to display the number of favorites in the navigation header.
- * Hidden when the count is zero.
- */
-class FavoritesCount extends BaseComponent {
-    render() {
-        if (this.props.count == 0) {
-            return null
-        }
-
-        return (
-            <View style={stylesheet.headerCount}>
-                <Text style={stylesheet.headerCountText}>
-                    {this.props.count}
-                </Text>
-            </View>
-        )
-    }
-}
-
-FavoritesCount = connect((state) => ({ count: Object.keys(state.favorites).length }))(FavoritesCount)
-
-/**
  * A screen used to show a feed of favorite items.
  */
 class FavoritesScreen extends BaseComponent {
-    static navigationOptions = {
-        title: 'Favorites',
-        headerRight: (<FavoritesCount />),
+    static navigationOptions = ({navigation}) => {
+        const params = navigation.state.params || {}
+        let title = 'Favorites'
+        if (params.count) {
+            if (params.count > 1) {
+                title = params.count + ' ' + title
+            } else if (params.count == 1) {
+                title = params.count + ' Favorite'
+            }
+        }
+
+        return {
+            title: title,
+        }
+    }
+
+    componentWillMount() {
+        this.refreshCount(Object.keys(this.props.favorites).length, null)
+    }
+
+    componentWillReceiveProps(nextProps) {
+        const count = Object.keys(nextProps.favorites).length
+        const previousCount = Object.keys(this.props.favorites).length
+        this.refreshCount(count, previousCount)
+    }
+
+    refreshCount(count, previousCount) {
+        if (count != previousCount) {
+            this.props.navigation.setParams({ count: count })
+        }
     }
 
     render() {

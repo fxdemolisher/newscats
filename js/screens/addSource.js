@@ -25,8 +25,9 @@ const styles = {
         paddingVertical: Styles.Size.XSmall,
     },
     text: {
-        ...Styles.Text.Standard,
+        backgroundColor: Styles.Color.Clear,
         color: Styles.Color.Grey700,
+        fontFamily: Styles.Font.Family.RobotoRegular,
         fontSize: Styles.Font.Size.Small,
     },
     fieldValue: {
@@ -58,15 +59,14 @@ class DoneButton extends BaseComponent {
     }
 
     render() {
-        const style = [
-            Styles.Common.headerIcon,
-            { tintColor: this.props.url ? Styles.Color.Grey700 : Styles.Color.Grey100 },
-        ]
+        const style = {
+            tintColor: (this.props.url ? Styles.Color.Grey700 : Styles.Color.Grey100),
+        }
 
         return (
-            <ImageButton imageSource={Images.done}
-                         onPress={this.addSource}
-                         style={style} />
+            <ImageButton buttonStyle={style}
+                         imageSource={Images.done}
+                         onPress={this.addSource} />
         )
     }
 }

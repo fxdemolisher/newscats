@@ -1,5 +1,4 @@
 import * as ColorManipulator from 'color'
-import {StyleSheet} from 'react-native'
 
 import {Responsive} from './responsive'
 
@@ -24,6 +23,7 @@ const Color = {
     Grey800: ColorManipulator.default('#424242FF'),
     Grey900: ColorManipulator.default('#212121FF'),
     Red500: ColorManipulator.default('#F44336FF'),
+    Red600: ColorManipulator.default('#E53935FF'),
     RedA400: ColorManipulator.default('#FF1744FF'),
     White: ColorManipulator.default('#FFFFFFFF'),
 }
@@ -35,8 +35,8 @@ const Color = {
  *   const foo = Styles.Font.Family.RobotoRegular
  */
 const FontFamily = {
+    RobotoMedium: 'Roboto-Medium',
     RobotoRegular: 'Roboto-Regular',
-    RobotoBold: 'Roboto-Bold',
 }
 
 /**
@@ -63,6 +63,18 @@ const FontSize = new Responsive()
          Responsive.Screen.Small(12),
          Responsive.Screen.Medium(16),
          Responsive.Screen.Large(20)
+    )
+    .add(
+         'XSmall',
+         Responsive.Screen.Small(8),
+         Responsive.Screen.Medium(12),
+         Responsive.Screen.Large(16)
+    )
+    .add(
+         'XXSmall',
+         Responsive.Screen.Small(8),
+         Responsive.Screen.Medium(10),
+         Responsive.Screen.Large(12)
     )
 
 /**
@@ -104,52 +116,20 @@ const Size = new Responsive()
          Responsive.Screen.Medium(8),
          Responsive.Screen.Large(12)
     )
-
-/**
- * Various text styles.
- *
- * Usage:
- *   import {Styles} from '/styles'
- *   <Text style={Styles.Text.Standard}>
- */
-const Text = {
-    Standard: {
-        backgroundColor: Color.Clear,
-        fontFamily: Font.Family.RobotoRegular,
-        fontSize: Font.Size.Large,
-    },
-    Bold: {
-        backgroundColor: Color.Clear,
-        fontFamily: Font.Family.RobotoBold,
-        fontSize: Font.Size.Large,
-    }
-}
-
-/**
- * Common styles used throughout the app.
- *
- * Usage:
- *   import {Styles} from '/styles'
- *   <Text style={Styles.Common.SomeTextStyleName}>
- */
-const commonStyles = {
-    headerIcon: {
-        height: 24,
-        margin: Size.Small,
-        tintColor: Color.Grey700,
-        width: 24,
-    },
-}
+    .add(
+         'XXSmall',
+         Responsive.Screen.Small(2),
+         Responsive.Screen.Medium(4),
+         Responsive.Screen.Large(8)
+    )
 
 /**
  * Collection of our styles.
  */
 const Styles = {
     Color: Color,
-    Common: StyleSheet.create(commonStyles),
     Font: Font,
     Size: Size,
-    Text: Text,
 }
 
 export {
