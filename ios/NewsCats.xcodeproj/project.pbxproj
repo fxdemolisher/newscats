@@ -1,0 +1,613 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		374321CCEE6B6E5BACCB05CE /* Pods_NewsCats.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4FB01C5DFE1B6185649D61C3 /* Pods_NewsCats.framework */; };
+		5BA6E23D1F3B3E50007E89E4 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BA6E23B1F3B3E50007E89E4 /* AppDelegate.swift */; };
+		5BA6E23E1F3B3E50007E89E4 /* ReactNative.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5BA6E23C1F3B3E50007E89E4 /* ReactNative.storyboard */; };
+		5BA6E2421F3B401F007E89E4 /* EnvironmentManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BA6E2411F3B401F007E89E4 /* EnvironmentManager.swift */; };
+		5BAD88EE1F3B37F4003BCB29 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5BAD88ED1F3B37F4003BCB29 /* Assets.xcassets */; };
+		5BAD88F11F3B37F4003BCB29 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5BAD88EF1F3B37F4003BCB29 /* LaunchScreen.storyboard */; };
+		5BDBA6391F3B805500CB399D /* BridgeMethodWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BDBA6341F3B805500CB399D /* BridgeMethodWrapper.swift */; };
+		5BDBA63A1F3B805500CB399D /* InvalidBridgeArgumentError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BDBA6351F3B805500CB399D /* InvalidBridgeArgumentError.swift */; };
+		5BDBA63B1F3B805500CB399D /* EnvironmentBridge.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BDBA6361F3B805500CB399D /* EnvironmentBridge.swift */; };
+		5BDBA63C1F3B805500CB399D /* NavigationBridge.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BDBA6371F3B805500CB399D /* NavigationBridge.swift */; };
+		5BDBA63D1F3B805500CB399D /* ReactNativeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BDBA6381F3B805500CB399D /* ReactNativeViewController.swift */; };
+		5BEE09A91F3CF7CA0054D918 /* BuildEnvironment-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 5BEE09A81F3CF7CA0054D918 /* BuildEnvironment-Info.plist */; };
+		5BEE09C11F3CFDC00054D918 /* README.md in Sources */ = {isa = PBXBuildFile; fileRef = 5BEE09B31F3CFDC00054D918 /* README.md */; };
+		5BEE09C21F3CFDC00054D918 /* Roboto-Black.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 5BEE09B41F3CFDC00054D918 /* Roboto-Black.ttf */; };
+		5BEE09C31F3CFDC00054D918 /* Roboto-BlackItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 5BEE09B51F3CFDC00054D918 /* Roboto-BlackItalic.ttf */; };
+		5BEE09C41F3CFDC00054D918 /* Roboto-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 5BEE09B61F3CFDC00054D918 /* Roboto-Bold.ttf */; };
+		5BEE09C51F3CFDC00054D918 /* Roboto-BoldItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 5BEE09B71F3CFDC00054D918 /* Roboto-BoldItalic.ttf */; };
+		5BEE09C61F3CFDC00054D918 /* Roboto-Italic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 5BEE09B81F3CFDC00054D918 /* Roboto-Italic.ttf */; };
+		5BEE09C71F3CFDC00054D918 /* Roboto-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 5BEE09B91F3CFDC00054D918 /* Roboto-Light.ttf */; };
+		5BEE09C81F3CFDC00054D918 /* Roboto-LightItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 5BEE09BA1F3CFDC00054D918 /* Roboto-LightItalic.ttf */; };
+		5BEE09C91F3CFDC00054D918 /* Roboto-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 5BEE09BB1F3CFDC00054D918 /* Roboto-Medium.ttf */; };
+		5BEE09CA1F3CFDC00054D918 /* Roboto-MediumItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 5BEE09BC1F3CFDC00054D918 /* Roboto-MediumItalic.ttf */; };
+		5BEE09CB1F3CFDC00054D918 /* Roboto-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 5BEE09BD1F3CFDC00054D918 /* Roboto-Regular.ttf */; };
+		5BEE09CC1F3CFDC00054D918 /* Roboto-Thin.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 5BEE09BE1F3CFDC00054D918 /* Roboto-Thin.ttf */; };
+		5BEE09CD1F3CFDC00054D918 /* Roboto-ThinItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 5BEE09BF1F3CFDC00054D918 /* Roboto-ThinItalic.ttf */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		5BAD89001F3B38AD003BCB29 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 5BAD88F81F3B38AC003BCB29 /* Pods.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = E727501E332F527625B06CDEFF88D552;
+			remoteInfo = BVLinearGradient;
+		};
+		5BAD89021F3B38AD003BCB29 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 5BAD88F81F3B38AC003BCB29 /* Pods.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 9D3F6361A2D68B52218B28AECECD0C6C;
+			remoteInfo = Freddy;
+		};
+		5BAD89041F3B38AD003BCB29 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 5BAD88F81F3B38AC003BCB29 /* Pods.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = CB87293E0881944F25F67152F81C1466;
+			remoteInfo = "Pods-NewsCats";
+		};
+		5BAD89061F3B38AD003BCB29 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 5BAD88F81F3B38AC003BCB29 /* Pods.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 0B58FFFC844BABEB78B93AA05EB37FFC;
+			remoteInfo = React;
+		};
+		5BAD89081F3B38AD003BCB29 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 5BAD88F81F3B38AC003BCB29 /* Pods.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 0246A2F1398A90965FE0754535F327D1;
+			remoteInfo = Yoga;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		4FB01C5DFE1B6185649D61C3 /* Pods_NewsCats.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_NewsCats.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		5BA6E23B1F3B3E50007E89E4 /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		5BA6E23C1F3B3E50007E89E4 /* ReactNative.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = ReactNative.storyboard; sourceTree = "<group>"; };
+		5BA6E2411F3B401F007E89E4 /* EnvironmentManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EnvironmentManager.swift; sourceTree = "<group>"; };
+		5BAD88E31F3B37F3003BCB29 /* NewsCats.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = NewsCats.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		5BAD88ED1F3B37F4003BCB29 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		5BAD88F01F3B37F4003BCB29 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		5BAD88F21F3B37F4003BCB29 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		5BAD88F81F3B38AC003BCB29 /* Pods.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Pods.xcodeproj; path = Pods/Pods.xcodeproj; sourceTree = "<group>"; };
+		5BDBA6341F3B805500CB399D /* BridgeMethodWrapper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BridgeMethodWrapper.swift; sourceTree = "<group>"; };
+		5BDBA6351F3B805500CB399D /* InvalidBridgeArgumentError.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InvalidBridgeArgumentError.swift; sourceTree = "<group>"; };
+		5BDBA6361F3B805500CB399D /* EnvironmentBridge.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EnvironmentBridge.swift; sourceTree = "<group>"; };
+		5BDBA6371F3B805500CB399D /* NavigationBridge.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NavigationBridge.swift; sourceTree = "<group>"; };
+		5BDBA6381F3B805500CB399D /* ReactNativeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReactNativeViewController.swift; sourceTree = "<group>"; };
+		5BEE09A81F3CF7CA0054D918 /* BuildEnvironment-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "BuildEnvironment-Info.plist"; sourceTree = "<group>"; };
+		5BEE09B21F3CFDC00054D918 /* LICENSE.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = LICENSE.txt; path = Fonts/LICENSE.txt; sourceTree = "<group>"; };
+		5BEE09B31F3CFDC00054D918 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; name = README.md; path = Fonts/README.md; sourceTree = "<group>"; };
+		5BEE09B41F3CFDC00054D918 /* Roboto-Black.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Roboto-Black.ttf"; path = "Fonts/Roboto-Black.ttf"; sourceTree = "<group>"; };
+		5BEE09B51F3CFDC00054D918 /* Roboto-BlackItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Roboto-BlackItalic.ttf"; path = "Fonts/Roboto-BlackItalic.ttf"; sourceTree = "<group>"; };
+		5BEE09B61F3CFDC00054D918 /* Roboto-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Roboto-Bold.ttf"; path = "Fonts/Roboto-Bold.ttf"; sourceTree = "<group>"; };
+		5BEE09B71F3CFDC00054D918 /* Roboto-BoldItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Roboto-BoldItalic.ttf"; path = "Fonts/Roboto-BoldItalic.ttf"; sourceTree = "<group>"; };
+		5BEE09B81F3CFDC00054D918 /* Roboto-Italic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Roboto-Italic.ttf"; path = "Fonts/Roboto-Italic.ttf"; sourceTree = "<group>"; };
+		5BEE09B91F3CFDC00054D918 /* Roboto-Light.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Roboto-Light.ttf"; path = "Fonts/Roboto-Light.ttf"; sourceTree = "<group>"; };
+		5BEE09BA1F3CFDC00054D918 /* Roboto-LightItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Roboto-LightItalic.ttf"; path = "Fonts/Roboto-LightItalic.ttf"; sourceTree = "<group>"; };
+		5BEE09BB1F3CFDC00054D918 /* Roboto-Medium.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Roboto-Medium.ttf"; path = "Fonts/Roboto-Medium.ttf"; sourceTree = "<group>"; };
+		5BEE09BC1F3CFDC00054D918 /* Roboto-MediumItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Roboto-MediumItalic.ttf"; path = "Fonts/Roboto-MediumItalic.ttf"; sourceTree = "<group>"; };
+		5BEE09BD1F3CFDC00054D918 /* Roboto-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Roboto-Regular.ttf"; path = "Fonts/Roboto-Regular.ttf"; sourceTree = "<group>"; };
+		5BEE09BE1F3CFDC00054D918 /* Roboto-Thin.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Roboto-Thin.ttf"; path = "Fonts/Roboto-Thin.ttf"; sourceTree = "<group>"; };
+		5BEE09BF1F3CFDC00054D918 /* Roboto-ThinItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Roboto-ThinItalic.ttf"; path = "Fonts/Roboto-ThinItalic.ttf"; sourceTree = "<group>"; };
+		67B9C2D5F129723C044AA00E /* Pods-NewsCats.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NewsCats.release.xcconfig"; path = "Pods/Target Support Files/Pods-NewsCats/Pods-NewsCats.release.xcconfig"; sourceTree = "<group>"; };
+		E4294AE2DE0E9CC3D6EFFF9C /* Pods-NewsCats.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NewsCats.debug.xcconfig"; path = "Pods/Target Support Files/Pods-NewsCats/Pods-NewsCats.debug.xcconfig"; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		5BAD88E01F3B37F3003BCB29 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				374321CCEE6B6E5BACCB05CE /* Pods_NewsCats.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		16B4EA83C814693AAA942004 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				4FB01C5DFE1B6185649D61C3 /* Pods_NewsCats.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		5BAD88DA1F3B37F3003BCB29 = {
+			isa = PBXGroup;
+			children = (
+				5BAD88F81F3B38AC003BCB29 /* Pods.xcodeproj */,
+				5BAD88E51F3B37F3003BCB29 /* NewsCats */,
+				5BAD88E41F3B37F3003BCB29 /* Products */,
+				62D565F98EC76DF71ACB9ACB /* Pods */,
+				16B4EA83C814693AAA942004 /* Frameworks */,
+			);
+			sourceTree = "<group>";
+		};
+		5BAD88E41F3B37F3003BCB29 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				5BAD88E31F3B37F3003BCB29 /* NewsCats.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		5BAD88E51F3B37F3003BCB29 /* NewsCats */ = {
+			isa = PBXGroup;
+			children = (
+				5BEE09B11F3CFDAA0054D918 /* Fonts */,
+				5BEE09A81F3CF7CA0054D918 /* BuildEnvironment-Info.plist */,
+				5BAD88F21F3B37F4003BCB29 /* Info.plist */,
+				5BA6E23C1F3B3E50007E89E4 /* ReactNative.storyboard */,
+				5BA6E23B1F3B3E50007E89E4 /* AppDelegate.swift */,
+				5BDBA6341F3B805500CB399D /* BridgeMethodWrapper.swift */,
+				5BDBA6361F3B805500CB399D /* EnvironmentBridge.swift */,
+				5BA6E2411F3B401F007E89E4 /* EnvironmentManager.swift */,
+				5BDBA6351F3B805500CB399D /* InvalidBridgeArgumentError.swift */,
+				5BDBA6371F3B805500CB399D /* NavigationBridge.swift */,
+				5BDBA6381F3B805500CB399D /* ReactNativeViewController.swift */,
+				5BAD88ED1F3B37F4003BCB29 /* Assets.xcassets */,
+				5BAD88EF1F3B37F4003BCB29 /* LaunchScreen.storyboard */,
+			);
+			path = NewsCats;
+			sourceTree = "<group>";
+		};
+		5BAD88F91F3B38AC003BCB29 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				5BAD89011F3B38AD003BCB29 /* BVLinearGradient.framework */,
+				5BAD89031F3B38AD003BCB29 /* Freddy.framework */,
+				5BAD89051F3B38AD003BCB29 /* Pods_NewsCats.framework */,
+				5BAD89071F3B38AD003BCB29 /* React.framework */,
+				5BAD89091F3B38AD003BCB29 /* yoga.framework */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		5BEE09B11F3CFDAA0054D918 /* Fonts */ = {
+			isa = PBXGroup;
+			children = (
+				5BEE09B21F3CFDC00054D918 /* LICENSE.txt */,
+				5BEE09B31F3CFDC00054D918 /* README.md */,
+				5BEE09B41F3CFDC00054D918 /* Roboto-Black.ttf */,
+				5BEE09B51F3CFDC00054D918 /* Roboto-BlackItalic.ttf */,
+				5BEE09B61F3CFDC00054D918 /* Roboto-Bold.ttf */,
+				5BEE09B71F3CFDC00054D918 /* Roboto-BoldItalic.ttf */,
+				5BEE09B81F3CFDC00054D918 /* Roboto-Italic.ttf */,
+				5BEE09B91F3CFDC00054D918 /* Roboto-Light.ttf */,
+				5BEE09BA1F3CFDC00054D918 /* Roboto-LightItalic.ttf */,
+				5BEE09BB1F3CFDC00054D918 /* Roboto-Medium.ttf */,
+				5BEE09BC1F3CFDC00054D918 /* Roboto-MediumItalic.ttf */,
+				5BEE09BD1F3CFDC00054D918 /* Roboto-Regular.ttf */,
+				5BEE09BE1F3CFDC00054D918 /* Roboto-Thin.ttf */,
+				5BEE09BF1F3CFDC00054D918 /* Roboto-ThinItalic.ttf */,
+			);
+			name = Fonts;
+			sourceTree = "<group>";
+		};
+		62D565F98EC76DF71ACB9ACB /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				E4294AE2DE0E9CC3D6EFFF9C /* Pods-NewsCats.debug.xcconfig */,
+				67B9C2D5F129723C044AA00E /* Pods-NewsCats.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		5BAD88E21F3B37F3003BCB29 /* NewsCats */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 5BAD88F51F3B37F4003BCB29 /* Build configuration list for PBXNativeTarget "NewsCats" */;
+			buildPhases = (
+				839456B9B8BBD9D08FC9BD0B /* [CP] Check Pods Manifest.lock */,
+				5BEE09A61F3CF6C00054D918 /* Build machine IP */,
+				5BAD88DF1F3B37F3003BCB29 /* Sources */,
+				5BAD88E01F3B37F3003BCB29 /* Frameworks */,
+				5BAD88E11F3B37F3003BCB29 /* Resources */,
+				5BEE09A71F3CF72C0054D918 /* RN Bundle */,
+				E83A89B82F5260C5F977011C /* [CP] Embed Pods Frameworks */,
+				41F3E47817F983DA3835DF83 /* [CP] Copy Pods Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = NewsCats;
+			productName = NewsCats;
+			productReference = 5BAD88E31F3B37F3003BCB29 /* NewsCats.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		5BAD88DB1F3B37F3003BCB29 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 0830;
+				LastUpgradeCheck = 0830;
+				ORGANIZATIONNAME = vagrant;
+				TargetAttributes = {
+					5BAD88E21F3B37F3003BCB29 = {
+						CreatedOnToolsVersion = 8.3.3;
+						LastSwiftMigration = 0830;
+						ProvisioningStyle = Automatic;
+					};
+				};
+			};
+			buildConfigurationList = 5BAD88DE1F3B37F3003BCB29 /* Build configuration list for PBXProject "NewsCats" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 5BAD88DA1F3B37F3003BCB29;
+			productRefGroup = 5BAD88E41F3B37F3003BCB29 /* Products */;
+			projectDirPath = "";
+			projectReferences = (
+				{
+					ProductGroup = 5BAD88F91F3B38AC003BCB29 /* Products */;
+					ProjectRef = 5BAD88F81F3B38AC003BCB29 /* Pods.xcodeproj */;
+				},
+			);
+			projectRoot = "";
+			targets = (
+				5BAD88E21F3B37F3003BCB29 /* NewsCats */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXReferenceProxy section */
+		5BAD89011F3B38AD003BCB29 /* BVLinearGradient.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = BVLinearGradient.framework;
+			remoteRef = 5BAD89001F3B38AD003BCB29 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		5BAD89031F3B38AD003BCB29 /* Freddy.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = Freddy.framework;
+			remoteRef = 5BAD89021F3B38AD003BCB29 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		5BAD89051F3B38AD003BCB29 /* Pods_NewsCats.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = Pods_NewsCats.framework;
+			remoteRef = 5BAD89041F3B38AD003BCB29 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		5BAD89071F3B38AD003BCB29 /* React.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = React.framework;
+			remoteRef = 5BAD89061F3B38AD003BCB29 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		5BAD89091F3B38AD003BCB29 /* yoga.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = yoga.framework;
+			remoteRef = 5BAD89081F3B38AD003BCB29 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+/* End PBXReferenceProxy section */
+
+/* Begin PBXResourcesBuildPhase section */
+		5BAD88E11F3B37F3003BCB29 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				5BEE09CC1F3CFDC00054D918 /* Roboto-Thin.ttf in Resources */,
+				5BEE09C91F3CFDC00054D918 /* Roboto-Medium.ttf in Resources */,
+				5BEE09C51F3CFDC00054D918 /* Roboto-BoldItalic.ttf in Resources */,
+				5BA6E23E1F3B3E50007E89E4 /* ReactNative.storyboard in Resources */,
+				5BEE09C81F3CFDC00054D918 /* Roboto-LightItalic.ttf in Resources */,
+				5BEE09CA1F3CFDC00054D918 /* Roboto-MediumItalic.ttf in Resources */,
+				5BEE09A91F3CF7CA0054D918 /* BuildEnvironment-Info.plist in Resources */,
+				5BEE09C71F3CFDC00054D918 /* Roboto-Light.ttf in Resources */,
+				5BAD88F11F3B37F4003BCB29 /* LaunchScreen.storyboard in Resources */,
+				5BEE09C31F3CFDC00054D918 /* Roboto-BlackItalic.ttf in Resources */,
+				5BEE09CD1F3CFDC00054D918 /* Roboto-ThinItalic.ttf in Resources */,
+				5BAD88EE1F3B37F4003BCB29 /* Assets.xcassets in Resources */,
+				5BEE09C61F3CFDC00054D918 /* Roboto-Italic.ttf in Resources */,
+				5BEE09CB1F3CFDC00054D918 /* Roboto-Regular.ttf in Resources */,
+				5BEE09C41F3CFDC00054D918 /* Roboto-Bold.ttf in Resources */,
+				5BEE09C21F3CFDC00054D918 /* Roboto-Black.ttf in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		41F3E47817F983DA3835DF83 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-NewsCats/Pods-NewsCats-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		5BEE09A61F3CF6C00054D918 /* Build machine IP */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Build machine IP";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "# Use this line if running the simulator on the same machine as npm.\nBUILD_MACHINE_IP=`ipconfig getifaddr en0`\n\n# Use this line if npm is running somewhere else.\n#BUILD_MACHINE_IP=\"192.168.0.102\"\n\ncat << EOF > \"${SRCROOT}/NewsCats/BuildEnvironment-Info.plist\"\n<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<!DOCTYPE plist PUBLIC \"-//Apple//DTD PLIST 1.0//EN\" \"http://www.apple.com/DTDs/PropertyList-1.0.dtd\">\n<!-- Auto generated by our build -->\n<plist version=\"1.0\">\n<dict>\n<key>BUILD_MACHINE_IP</key>\n<string>${BUILD_MACHINE_IP}</string>\n</dict>\n</plist>\nEOF";
+		};
+		5BEE09A71F3CF72C0054D918 /* RN Bundle */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "RN Bundle";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "export NODE_BINARY=node\n\nPLATFORM_NAME_ACTUAL=$PLATFORM_NAME\nexport PLATFORM_NAME=\"IAMNOTFUCKINGSIMULATOR\"\n\n../node_modules/react-native/scripts/react-native-xcode.sh js/index.ios.js\n\nexport PLATFORM_NAME=$PLATFORM_NAME_ACTUAL\nunset PLATFORM_NAME_ACTUAL";
+		};
+		839456B9B8BBD9D08FC9BD0B /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-NewsCats-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		E83A89B82F5260C5F977011C /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-NewsCats/Pods-NewsCats-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/BVLinearGradient/BVLinearGradient.framework",
+				"${BUILT_PRODUCTS_DIR}/Freddy/Freddy.framework",
+				"${BUILT_PRODUCTS_DIR}/React/React.framework",
+				"${BUILT_PRODUCTS_DIR}/Yoga/yoga.framework",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/BVLinearGradient.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Freddy.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/React.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/yoga.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-NewsCats/Pods-NewsCats-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		5BAD88DF1F3B37F3003BCB29 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				5BDBA63A1F3B805500CB399D /* InvalidBridgeArgumentError.swift in Sources */,
+				5BDBA63B1F3B805500CB399D /* EnvironmentBridge.swift in Sources */,
+				5BA6E23D1F3B3E50007E89E4 /* AppDelegate.swift in Sources */,
+				5BDBA6391F3B805500CB399D /* BridgeMethodWrapper.swift in Sources */,
+				5BA6E2421F3B401F007E89E4 /* EnvironmentManager.swift in Sources */,
+				5BDBA63D1F3B805500CB399D /* ReactNativeViewController.swift in Sources */,
+				5BEE09C11F3CFDC00054D918 /* README.md in Sources */,
+				5BDBA63C1F3B805500CB399D /* NavigationBridge.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		5BAD88EF1F3B37F4003BCB29 /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				5BAD88F01F3B37F4003BCB29 /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		5BAD88F31F3B37F4003BCB29 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				PROVISIONING_PROFILE_SPECIFIER = NO_SIGNING;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		5BAD88F41F3B37F4003BCB29 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				PROVISIONING_PROFILE_SPECIFIER = NO_SIGNING;
+				SDKROOT = iphoneos;
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		5BAD88F61F3B37F4003BCB29 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = E4294AE2DE0E9CC3D6EFFF9C /* Pods-NewsCats.debug.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_IDENTITY = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				DEVELOPMENT_TEAM = "";
+				ENVIRONMENT_NAME = debug;
+				INFOPLIST_FILE = NewsCats/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.fxdemolisher.newscats;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 3.0;
+			};
+			name = Debug;
+		};
+		5BAD88F71F3B37F4003BCB29 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 67B9C2D5F129723C044AA00E /* Pods-NewsCats.release.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				DEVELOPMENT_TEAM = "";
+				ENVIRONMENT_NAME = release;
+				INFOPLIST_FILE = NewsCats/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.fxdemolisher.newscats;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				SWIFT_VERSION = 3.0;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		5BAD88DE1F3B37F3003BCB29 /* Build configuration list for PBXProject "NewsCats" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				5BAD88F31F3B37F4003BCB29 /* Debug */,
+				5BAD88F41F3B37F4003BCB29 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+		5BAD88F51F3B37F4003BCB29 /* Build configuration list for PBXNativeTarget "NewsCats" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				5BAD88F61F3B37F4003BCB29 /* Debug */,
+				5BAD88F71F3B37F4003BCB29 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 5BAD88DB1F3B37F3003BCB29 /* Project object */;
+}

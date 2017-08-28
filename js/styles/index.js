@@ -136,6 +136,7 @@ const commonStyles = {
     headerIcon: {
         height: 24,
         margin: Size.Small,
+        tintColor: Color.Grey700,
         width: 24,
     },
 }

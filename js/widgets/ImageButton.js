@@ -18,9 +18,6 @@ class ImageButton extends BaseComponent {
 
         // Optionjal, style of the image component.
         style: null,
-
-        // Optional, tint color of the image component.
-        tintColor: null,
     }
 
     render() {
@@ -33,8 +30,7 @@ class ImageButton extends BaseComponent {
 
                 <Image resizeMode="center"
                        source={this.props.imageSource}
-                       style={this.props.style}
-                       tintColor={this.props.tintColor} />
+                       style={this.props.style} />
 
             </TouchableOpacity>
         )

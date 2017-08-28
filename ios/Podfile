@@ -1,0 +1,54 @@
+# Uncomment the next line to define a global platform for your project
+platform :ios, ’10.0’
+
+target ‘NewsCats’ do
+  # Comment the next line if you're not using Swift and don't want to use dynamic frameworks
+  use_frameworks!
+  
+  # Link to the main project.
+  project 'NewsCats'
+  
+  # Used for JSON serialization/deserialization.
+  pod 'Freddy'
+  
+  # React/RN support.
+  pod 'React', :path => '../node_modules/react-native', :subspecs => [
+    # RN Core.
+    'BatchedBridge',
+    'Core',
+    
+    # Adds native drawing.
+    'ART',
+    
+    # Adapters for various native views.
+    'RCTImage',
+    'RCTText',
+    
+    # Advanced native animations from RN.
+    'RCTAnimation',
+    
+    # Native services we would want to use.
+    'RCTGeolocation',
+    'RCTPushNotification',
+    'RCTNetwork',
+    
+    # Web socket debugging via 8081 port.
+    'RCTWebSocket',
+    
+    # Required for share and other action sheets on iOS.
+    'RCTActionSheet',
+    
+    # Required for react-navigation on iOS.
+    'RCTLinkingIOS',
+    
+    # Used for debugging.
+    'DevSupport',
+  ]
+  
+  # Explicitly include Yoga if you are using RN >= 0.42.0
+  pod "Yoga", :path => "../node_modules/react-native/ReactCommon/yoga"
+  
+  # Linear gradient component for RN.
+  pod 'BVLinearGradient', :path => '../node_modules/react-native-linear-gradient'
+
+end

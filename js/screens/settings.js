@@ -86,13 +86,11 @@ class HeaderActions extends BaseComponent {
             <View style={stylesheet.headerActions}>
                 <ImageButton imageSource={Images.info}
                              onPress={this.gotoInfo}
-                             style={Styles.Common.headerIcon}
-                             tintColor={Styles.Color.Grey700} />
+                             style={Styles.Common.headerIcon} />
 
                 <ImageButton imageSource={Images.reset}
                              onPress={this.fullReset}
-                             style={Styles.Common.headerIcon}
-                             tintColor={Styles.Color.Grey700} />
+                             style={Styles.Common.headerIcon} />
              </View>
         )
     }
@@ -191,8 +189,7 @@ class SettingsScreen extends BaseComponent {
 
                 <ImageButton imageSource={Images.add}
                              onPress={section.addFunction}
-                             style={Styles.Common.headerIcon}
-                             tintColor={Styles.Color.Grey700} />
+                             style={Styles.Common.headerIcon} />
             </View>
         )
     }

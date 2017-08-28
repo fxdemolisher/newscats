@@ -33,11 +33,13 @@ const styles = {
         ...Styles.Text.Standard,
         color: Styles.Color.Grey500,
         fontSize: Styles.Font.Size.Medium,
+        textAlign: 'center',
     },
     emptySub: {
         ...Styles.Text.Standard,
         color: Styles.Color.Grey500,
         fontSize: Styles.Font.Size.Small,
+        textAlign: 'center',
     },
 }
 
@@ -62,13 +64,11 @@ class HeaderActions extends BaseComponent {
             <View style={stylesheet.headerActions}>
                 <ImageButton imageSource={Images.paw}
                              onPress={this.gotoFavorites}
-                             style={Styles.Common.headerIcon}
-                             tintColor={Styles.Color.Grey700} />
+                             style={Styles.Common.headerIcon} />
 
                 <ImageButton imageSource={Images.settings}
                              onPress={this.gotoSettings}
-                             style={Styles.Common.headerIcon}
-                             tintColor={Styles.Color.Grey700} />
+                             style={Styles.Common.headerIcon} />
              </View>
         )
     }
@@ -81,6 +81,7 @@ HeaderActions = connect()(HeaderActions)
  */
 class HomeScreen extends BaseComponent {
     static navigationOptions = {
+        headerBackTitle: 'Home',
         title: 'NewsCats',
         headerRight: (<HeaderActions />),
     }

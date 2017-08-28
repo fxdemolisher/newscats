@@ -23,6 +23,7 @@ const styles = {
         ...Styles.Text.Standard,
         color: Styles.Color.Grey500,
         fontSize: Styles.Font.Size.Medium,
+        textAlign: 'center',
     },
     headerCount: {
         alignItems: 'center',

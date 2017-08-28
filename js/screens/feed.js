@@ -84,6 +84,10 @@ class FeedItem extends BaseComponent {
 
     render() {
         const favoriteTint = (!!this.props.favorite ? Styles.Color.RedA400 : Styles.Color.Grey400)
+        const favoriteStyle = [
+            Styles.Common.headerIcon,
+            { tintColor: favoriteTint },
+        ]
 
         return (
             <TouchableWithoutFeedback accessibilityComponentType="button"
@@ -115,8 +119,7 @@ class FeedItem extends BaseComponent {
 
                         <ImageButton imageSource={Images.paw}
                                      onPress={this.toggleFavorite}
-                                     style={Styles.Common.headerIcon}
-                                     tintColor={favoriteTint} />
+                                     style={favoriteStyle} />
 
                     </View>
 

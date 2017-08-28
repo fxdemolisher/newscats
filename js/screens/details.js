@@ -74,8 +74,7 @@ class DetailsScreen extends BaseComponent {
             headerRight: (
                 <ImageButton imageSource={Images.share}
                              onPress={share}
-                             style={Styles.Common.headerIcon}
-                             tintColor={Styles.Color.Grey700} />
+                             style={Styles.Common.headerIcon} />
             ),
         }
     }

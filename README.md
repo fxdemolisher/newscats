@@ -20,7 +20,7 @@ This project is based on the [react-native-skeleton](https://github.com/fxdemoli
 
 ## Demo:
 
-![Demo GIF](https://github.com/fxdemolisher/newscats/blob/master/docs/demo.gif)
+![Demo Android GIF](https://github.com/fxdemolisher/newscats/blob/master/docs/demo-android.gif) ![Demo iOS GIF](https://github.com/fxdemolisher/newscats/blob/master/docs/demo-ios.gif)
 
 ## TODOs:
 
