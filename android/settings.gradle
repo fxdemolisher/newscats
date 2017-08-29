@@ -2,11 +2,15 @@ rootProject.name = 'newscats'
 
 // Main app project.
 include ':app'
-include ':react-native-linear-gradient'
 
 // Include the JS sourcedir so that it's editable in Android Studio.
 include ':js'
 project(':js').projectDir = new File(rootDir, '../js')
 
 // Linear gradient is installed via NPM, point to it's source dir.
+include ':react-native-linear-gradient'
 project(':react-native-linear-gradient').projectDir = new File(rootDir, '../node_modules/react-native-linear-gradient/android')
+
+// Video player in RN support.
+include ':react-native-video'
+project(':react-native-video').projectDir = new File(rootProject.projectDir, '../node_modules/react-native-video/android')

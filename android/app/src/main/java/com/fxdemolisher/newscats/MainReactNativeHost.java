@@ -3,6 +3,7 @@ package com.fxdemolisher.newscats;
 import android.app.Application;
 
 import com.BV.LinearGradient.LinearGradientPackage;
+import com.brentvatne.react.ReactVideoPackage;
 import com.facebook.react.ReactNativeHost;
 import com.facebook.react.ReactPackage;
 
@@ -38,6 +39,9 @@ public class MainReactNativeHost extends ReactNativeHost {
 
             // Linear gradient native support.
             new LinearGradientPackage(),
+
+            // Video player.
+            new ReactVideoPackage(),
 
             // Customized view managers and this application's bridges.
             new ApplicationReactPackage()

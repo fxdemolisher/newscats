@@ -24,9 +24,7 @@ This project is based on the [react-native-skeleton](https://github.com/fxdemoli
 
 ## TODOs:
 
-1. Video player in feed and details
 1. Seen item tracking tweaks (fix first item dissapearing without interaction)
 1. Convert source set into remote retrived packs (cats, cars, cakes, etc)
-1. Splash screen
 1. Add FlowType and lint config
 1. App store distribution

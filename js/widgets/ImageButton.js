@@ -38,18 +38,31 @@ class ImageButton extends BaseComponent {
 
         // Callback for when the image is pressed.
         onPress: null,
+
+        // Optional, controls how styles are combined between props and defaults. Either 'combine' or 'replace'.
+        styleMode: 'combine',
     }
 
     render() {
-        const containerStyle = [
+        let containerStyle = [
             stylesheet.container,
             this.props.containerStyle,
         ]
 
-        const buttonStyle = [
+        let buttonStyle = [
             stylesheet.button,
             this.props.buttonStyle,
         ]
+
+        if (this.props.styleMode == 'replace') {
+            if (this.props.containerStyle) {
+                containerStyle = this.props.containerStyle
+            }
+
+            if (this.props.buttonStyle) {
+                buttonStyle = this.props.buttonStyle
+            }
+        }
 
         return (
             <TouchableOpacity accessibilityComponentType="button"

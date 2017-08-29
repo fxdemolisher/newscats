@@ -50,5 +50,8 @@ target ‘NewsCats’ do
   
   # Linear gradient component for RN.
   pod 'BVLinearGradient', :path => '../node_modules/react-native-linear-gradient'
+  
+  # RN video player support.
+  pod 'react-native-video', :path => '../node_modules/react-native-video'
 
 end

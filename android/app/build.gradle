@@ -121,4 +121,7 @@ dependencies {
 
     // React Native itself.
     compile "com.facebook.react:react-native:+"
+
+    // RN video player support.
+    compile project(':react-native-video')
 }

@@ -44,17 +44,30 @@ function redditJsonToFeed(source, jsonString) {
         }
 
         const preview = entry.data.preview.images[0]
-        const mediaUrl = preview.source.url
+        const itemUrl = 'https://www.reddit.com' + entry.data.permalink
+
+        // Extract main image and it's preview image at a reasonable resolution.
+        let mediaType = ItemMediaType.Image
+        let mediaUrl = preview.source.url
         let previewUrl = mediaUrl
         if (preview.resolutions.length > 0) {
             previewUrl = preview.resolutions[Math.min(4, preview.resolutions.length - 1)].url
         }
 
-        const itemUrl = 'https://www.reddit.com' + entry.data.permalink
+        // If there is a video variant, use it instead of images as preview and media.
+        if (preview.variants && preview.variants.mp4) {
+            const videoVariant = preview.variants.mp4
+            mediaType = ItemMediaType.VideoMp4
+            mediaUrl = videoVariant.source.url
+            previewUrl = mediaUrl
+            if (videoVariant.resolutions.length > 0) {
+                previewUrl = videoVariant.resolutions[Math.min(4, videoVariant.resolutions.length - 1)].url
+            }
+        }
 
         const feedEntry = {
             key: 'reddit_' + entry.data.id,
-            mediaType: ItemMediaType.Image,
+            mediaType: mediaType,
             mediaUrl: mediaUrl,
             previewUrl: previewUrl,
             sourceTitle: source.title,
@@ -81,11 +94,19 @@ function instagramJsonToFeed(source, jsonString) {
             title = item.caption.text
         }
 
-        const mediaUrl = item.images.standard_resolution.url
+        // Start by assuming we are getting images.
+        let mediaType = ItemMediaType.Image
+        let mediaUrl = item.images.standard_resolution.url
+
+        // If there is a video variant, use it instead of images as preview and media.
+        if (item.videos) {
+            mediaType = ItemMediaType.VideoMp4
+            mediaUrl = item.videos.standard_resolution.url
+        }
 
         const feedEntry = {
             key: 'instagram_' + item.id,
-            mediaType: ItemMediaType.Image,
+            mediaType: mediaType,
             mediaUrl: mediaUrl,
             previewUrl: mediaUrl,
             sourceTitle: source.title,
