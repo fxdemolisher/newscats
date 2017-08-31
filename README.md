@@ -24,7 +24,10 @@ This project is based on the [react-native-skeleton](https://github.com/fxdemoli
 
 ## TODOs:
 
-1. Seen item tracking tweaks (fix first item dissapearing without interaction)
-1. Convert source set into remote retrived packs (cats, cars, cakes, etc)
-1. Add FlowType and lint config
+1. Convert source set into packs (cats, cars, cakes, etc)
+1. Add crash tracking
+1. Refresh demo gifs
 1. App store distribution
+1. Add FlowType and lint config
+1. Revisit pinch-to-zoom implementation (try react-native-photo-view)
+1. [BLOCKED] Revisit navigation horizontal gesture limit (swipe to dismiss)

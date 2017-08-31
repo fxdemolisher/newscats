@@ -4,6 +4,7 @@ import {Provider} from 'react-redux'
 
 import {Images} from '/images'
 import {RootComponent, rootReducer} from '/screens'
+import {FeedStatus, refreshFeed} from '/screens/actions'
 import {Store} from '/store'
 import {Styles} from '/styles'
 import {BaseComponent} from '/widgets'
@@ -32,19 +33,36 @@ class Application extends BaseComponent {
         super(props)
         
         // Start as not ready, displaying nothing.
-        this.state = { isStoreReady: false }
+        this.state = {
+            isInitialFeedLoadDone: false,
+            isStoreReady: false,
+        }
         
         // Initialize our permanent storage, with a callback when store hydration is completed.
-        this.storage = new Store(
-            rootReducer,
-            () => {
-                this.setState({ isStoreReady: true })
-            }
-        )
+        this.storage = new Store(rootReducer, this.onStoreReady)
 
         // Animation value for the splash screen.
         this.splashAnimation = new Animated.Value(0)
         this.startSplashAnimation()
+    }
+
+    onStoreReady = () => {
+        this.setState({ isStoreReady: true })
+
+        this.storeListenerUnsubscribe = this.storage
+            .store
+            .subscribe(() => {
+                const state = this.storage.store.getState()
+                const feedStatus = state.feed.status
+                if (feedStatus != FeedStatus.Ready) {
+                    return
+                }
+
+                this.storeListenerUnsubscribe()
+                this.setState({ isInitialFeedLoadDone: true })
+            })
+
+        this.storage.store.dispatch(refreshFeed())
     }
 
     startSplashAnimation() {
@@ -61,7 +79,7 @@ class Application extends BaseComponent {
             }
         )
         .start(() => {
-            if (this.state.isStoreReady) {
+            if (this.state.isStoreReady && this.state.isInitialFeedLoadDone) {
                 return
             }
 
@@ -91,7 +109,7 @@ class Application extends BaseComponent {
     
     render() {
         // If store isn't ready yet.
-        if (!this.state.isStoreReady) {
+        if (!this.state.isStoreReady || !this.state.isInitialFeedLoadDone) {
             return this.renderSplash()
         }
         

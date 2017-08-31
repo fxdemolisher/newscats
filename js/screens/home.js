@@ -80,18 +80,6 @@ class HomeScreen extends BaseComponent {
         headerRight: (<HeaderActions />),
     }
 
-    componentDidMount() {
-        if (this.props.feed.status == Actions.FeedStatus.NotInitialized) {
-            this.refresh()
-        }
-    }
-
-    componentWillReceiveProps(nextProps) {
-        if (nextProps.feed.status == Actions.FeedStatus.NotInitialized) {
-            this.refresh()
-        }
-    }
-
     refresh = () => {
         this.props.dispatch(Actions.refreshFeed())
     }

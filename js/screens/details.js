@@ -1,5 +1,5 @@
 import React from 'react'
-import {Linking, Platform, Share, StyleSheet, Text, View, WebView} from 'react-native'
+import {Alert, Linking, Platform, Share, StyleSheet, Text, TouchableWithoutFeedback, View, WebView} from 'react-native'
 
 import {Images} from '/images'
 import {Styles} from '/styles'
@@ -38,18 +38,29 @@ const stylesheet = StyleSheet.create(styles)
  * A component that summarizes the item (e.g. title + url) in the navigation header.
  */
 class DetailsScreenHeader extends BaseComponent {
+    showInfo = () => {
+        Alert.alert(
+            'Details',
+            (this.props.title + '\n\nFrom: ' + this.props.subTitle),
+            [ {text: 'Close',  style: 'cancel'} ],
+            { cancelable: true }
+        )
+    }
+
     render() {
         return (
-            <View style={stylesheet.titleContainer}>
-                <Text numberOfLines={1}
-                      style={stylesheet.title}>
-                    {this.props.title}
-                </Text>
-                <Text numberOfLines={1}
-                      style={stylesheet.subTitle}>
-                    {this.props.subTitle}
-                </Text>
-            </View>
+            <TouchableWithoutFeedback onPress={this.showInfo}>
+                <View style={stylesheet.titleContainer}>
+                    <Text numberOfLines={1}
+                          style={stylesheet.title}>
+                        {this.props.title}
+                    </Text>
+                    <Text numberOfLines={1}
+                          style={stylesheet.subTitle}>
+                        {this.props.subTitle}
+                    </Text>
+                </View>
+            </TouchableWithoutFeedback>
         )
     }
 }

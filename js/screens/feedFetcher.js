@@ -33,6 +33,9 @@ export function refreshSources(sources, seenKeysSet) {
 
             return fullFeed.filter((item) => (!seenKeysSet.has(item.key)))
         })
+        .catch((err) => {
+            console.log("ERROR: ", err)
+        })
 }
 
 /**

@@ -175,7 +175,7 @@ class Feed extends BaseComponent {
         const viewabilityConfig = {
             minimumViewTime: 500,
             itemVisiblePercentThreshold: 70,
-            waitForInteraction: false,
+            waitForInteraction: true,
         }
 
         return (
