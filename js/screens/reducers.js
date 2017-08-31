@@ -2,7 +2,7 @@ import moment from 'moment'
 import {REHYDRATE} from 'redux-persist/constants'
 
 import * as Actions from './actions'
-import {defaultSources} from './defaultSources'
+import {defaultSourcePacks} from './defaultSources'
 
 /**
  * The feed starts out as no initialized and empty.
@@ -29,12 +29,12 @@ export function feedReducer(state = initialFeedState, action) {
 }
 
 /**
- * Initial state for state.sources. A remap of the defaultSources.defaultSources array.
+ * Initial state for state.sources. A remap of the defaultSources.defaultSourcePacks array.
  */
-const initialSourcesState = defaultSources.reduce(
-    (result, source) => {
-        result[source.key] = {
-            ...source,
+const initialSourcesState = defaultSourcePacks.reduce(
+    (result, pack) => {
+        result[pack.key] = {
+            ...pack,
             enabled: true,
         }
 
@@ -44,15 +44,10 @@ const initialSourcesState = defaultSources.reduce(
 )
 
 /**
- * Reducer for state.sources, allowing manipulation (add, remove, toggle) of sources.
+ * Reducer for state.sources, allowing manipulation (toggling) of sources.
  */
 export function sourcesReducer(state = initialSourcesState, action) {
     switch(action.type) {
-        case Actions.Action.RemoveSource:
-            const copy = {...state}
-            delete copy[action.key]
-            return copy
-
         case Actions.Action.ToggleSource:
             return {
                 ...state,
@@ -60,12 +55,6 @@ export function sourcesReducer(state = initialSourcesState, action) {
                     ...state[action.key],
                     enabled: action.enabled,
                 }
-            }
-
-        case Actions.Action.AddSource:
-            return {
-                ...state,
-                [action.source.key]: action.source,
             }
     }
 

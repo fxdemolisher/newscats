@@ -1,8 +1,10 @@
 import React from 'react'
-import {NativeModules, ScrollView, StyleSheet, Text, View} from 'react-native'
+import {Alert, NativeModules, ScrollView, StyleSheet, Text, View} from 'react-native'
+import {connect} from 'react-redux'
 
+import {Images} from '/images'
 import {Styles} from '/styles'
-import {BaseComponent} from '/widgets'
+import {BaseComponent, ImageButton} from '/widgets'
 
 const styles = {
     container: {
@@ -27,11 +29,45 @@ const styles = {
 const stylesheet = StyleSheet.create(styles)
 
 /**
+ * Component for the header reset button.
+ */
+class ResetButton extends BaseComponent {
+    fullReset = () => {
+        const reset = () => {
+            this.props.storage
+                .persistor
+                .purge()
+                .then(() => { NativeModules.nav.restart() })
+        }
+
+        Alert.alert(
+            'Reset NewsCats',
+            (
+                'Are you sure you want to reset the entire NewsCats application?\n\n' +
+                'This will remove all your favorites and custom sources.'
+            ),
+            [ {text: 'Cancel',  style: 'cancel'}, {text: 'Reset', onPress: reset} ],
+            { cancelable: true }
+        )
+    }
+
+    render() {
+        return (
+            <ImageButton imageSource={Images.reset}
+                         onPress={this.fullReset} />
+        )
+    }
+}
+
+ResetButton = connect((state) => ({ storage: state.storage }))(ResetButton)
+
+/**
  * Simple screen displaying the application's current environment.
  */
 class DebugScreen extends BaseComponent {
     static navigationOptions = {
-        title: 'Application Information'
+        title: 'Application Information',
+        headerRight: (<ResetButton />),
     }
 
     constructor(props) {

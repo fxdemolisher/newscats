@@ -7,7 +7,6 @@ import {connect} from 'react-redux'
 import {Styles} from '/styles'
 import {BaseComponent} from '/widgets'
 
-import {AddSourceScreen} from './addSource'
 import {DebugScreen} from './debug'
 import {DetailsScreen} from './details'
 import {FavoritesScreen} from './favorites'
@@ -85,10 +84,6 @@ const RootNavigation = StackNavigator(
         settings: {
             screen: SettingsScreen,
             path: '/settings',
-        },
-        addSource: {
-            screen: AddSourceScreen,
-            path: '/settings/addSource',
         },
         favorites: {
             screen: FavoritesScreen,

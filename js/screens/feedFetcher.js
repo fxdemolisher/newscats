@@ -1,19 +1,20 @@
 import {toFeed} from './parsers'
 
 /**
- * Starts the process of refreshing the feed for a list of sources and a set of item keys that the user has already
+ * Starts the process of refreshing the feed for a list of source packs and a set of item keys that the user has already
  * seen. Returns a promise that once resolved contains a list (array) of feed items that the user has not yet seen.
  */
-export function refreshSources(sources, seenKeysSet) {
+export function refreshSources(sourcePacks, seenKeysSet) {
     const sourceFeeds = []
-    Object.keys(sources).forEach((key) => {
-        const source = sources[key]
-        if (!source.enabled) {
+    sourcePacks.forEach((pack) => {
+        if (!pack.enabled) {
             return
         }
 
-        const sourceFeed = sourceToFeed(source)
-        sourceFeeds.push(sourceFeed)
+        pack.sources.forEach((source) => {
+            const sourceFeed = sourceToFeed(source)
+            sourceFeeds.push(sourceFeed)
+        })
     })
 
     return Promise.all(sourceFeeds)

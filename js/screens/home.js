@@ -113,13 +113,7 @@ class HomeScreen extends BaseComponent {
     }
 }
 
-const mapStateToProps = (state) => {
-    return {
-        feed: state.feed,
-    }
-}
-
-HomeScreen = connect(mapStateToProps)(HomeScreen)
+HomeScreen = connect((state) => ({ feed: state.feed }))(HomeScreen)
 
 export {
     HomeScreen,

@@ -7,9 +7,7 @@ import {refreshSources} from './feedFetcher'
  */
 export const Action = {
     SetFeed: 'SetFeed',
-    RemoveSource: 'RemoveSource',
     ToggleSource: 'ToggleSource',
-    AddSource: 'AddSource',
     AddFavorite: 'AddFavorite',
     RemoveFavorite: 'RemoveFavorite',
     MarkSeen: 'MarkSeen',
@@ -41,7 +39,8 @@ export function refreshFeed() {
         })
 
         const seenKeySet = new Set(Object.keys(state.seenKeys))
-        refreshSources(state.sources, seenKeySet)
+        const sourcePacks = Object.values(state.sources)
+        refreshSources(sourcePacks, seenKeySet)
             .then((unseenItems) => {
                 dispatch({
                     type: Action.SetFeed,
@@ -56,24 +55,6 @@ export function refreshFeed() {
 }
 
 /**
- * Returns an action (thunk) that removes the source with the given key and clears the feed.
- */
-export function removeSource(key) {
-    return (dispatch) => {
-        dispatch({
-            type: Action.RemoveSource,
-            key: key,
-        })
-
-        dispatch({
-            type: Action.SetFeed,
-            status: FeedStatus.NotInitialized,
-            contents: [],
-        })
-    }
-}
-
-/**
  * Returns an action (thunk) that sets the enabled status of a source with the given key and clears the feed.
  */
 export function toggleSource(key, enabled) {
@@ -84,29 +65,7 @@ export function toggleSource(key, enabled) {
             enabled: enabled,
         })
 
-        dispatch({
-            type: Action.SetFeed,
-            status: FeedStatus.NotInitialized,
-            contents: [],
-        })
-    }
-}
-
-/**
- * Returns an action (thunk) that adds the given source and clears the feed.
- */
-export function addSource(source) {
-    return (dispatch) => {
-        dispatch({
-            type: Action.AddSource,
-            source: source,
-        })
-
-        dispatch({
-            type: Action.SetFeed,
-            status: FeedStatus.NotInitialized,
-            contents: [],
-        })
+        dispatch(refreshFeed())
     }
 }
 
