@@ -29,3 +29,9 @@ This project is based on the [react-native-skeleton](https://github.com/fxdemoli
 1. Add FlowType and lint config
 1. Revisit pinch-to-zoom implementation (try react-native-photo-view)
 1. [BLOCKED] Revisit navigation horizontal gesture limit (swipe to dismiss)
+
+## Optional components
+
+### Fabric/Crashlytics
+
+Both the iOS and Android native codebases support Fabric. To enable it, specify the FABRIC_API_KEY and FABRIC_BUILD_SECRET vars in a file called 'env' in the root of the project. See [env.sample](https://github.com/fxdemolisher/newscats/blob/master/env.sample) to see how it is done. If you're contributing to this repo, please do not check in your 'env' file.
