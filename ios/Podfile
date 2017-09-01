@@ -53,5 +53,9 @@ target ‘NewsCats’ do
   
   # RN video player support.
   pod 'react-native-video', :path => '../node_modules/react-native-video'
+  
+  # Fabric support.
+  pod 'Crashlytics'
+  pod 'Fabric'
 
 end

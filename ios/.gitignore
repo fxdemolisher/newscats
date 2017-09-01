@@ -3,3 +3,4 @@ xcuserdata/
 *.xcworkspace/
 ._*
 BuildEnvironment-Info.plist
+GlobalConfig-Info.plist

@@ -62,11 +62,25 @@ def static getBuildMachineIp() {
     return nonLoopback[0]
 }
 
+/**
+ * Initialize fabric if we have an env file and the api key is specified.
+ */
+def fabricApiKey = project.ext.globalConfig['FABRIC_API_KEY']
+if (fabricApiKey != null && !fabricApiKey.trim().isEmpty()) {
+    apply plugin: 'io.fabric'
+} else {
+    fabricApiKey = ''
+}
+
 android {
     defaultConfig {
         applicationId = project.ext.applicationId
         versionCode = project.ext.applicationVersionCode
         versionName = project.ext.applicationVersionName
+
+        manifestPlaceholders = [
+            fabricApiKey: fabricApiKey
+        ]
 
         ndk {
             abiFilters "armeabi-v7a", "x86"
@@ -124,4 +138,8 @@ dependencies {
 
     // RN video player support.
     compile project(':react-native-video')
+
+    // Fabric support
+    compile('com.crashlytics.sdk.android:crashlytics:2.6.8@aar') { transitive = true }
+    compile('com.crashlytics.sdk.android:answers:1.3.13@aar') { transitive = true }
 }

@@ -3,12 +3,27 @@
 buildscript {
     repositories {
         jcenter()
+        maven { url 'https://maven.fabric.io/public' }
     }
     dependencies {
         classpath 'com.android.tools.build:gradle:2.3.3'
 
+        // https://docs.fabric.io/android/changelog.html#fabric-gradle-plugin
+        classpath 'io.fabric.tools:gradle:1.24.1'
+
         // NOTE: Do not place your application dependencies here; they belong
         // in the individual module build.gradle files
+    }
+}
+
+/**
+ * Load our global config and inject into all projects.
+ */
+def globalProps = new Properties()
+def envFile = file('../env')
+if (envFile.exists()) {
+    envFile.withReader() {
+        globalProps.load(it)
     }
 }
 
@@ -22,6 +37,9 @@ allprojects {
         
         // Allows adding support libraries.
         maven { url "https://maven.google.com" }
+
+        // Fabric.
+        maven { url 'https://maven.fabric.io/public' }
     }
     
     /**
@@ -32,9 +50,11 @@ allprojects {
       applicationId = 'com.fxdemolisher.newscats'
       applicationVersionName = "0.0.1"
       applicationVersionCode = 1
+
+      // Properties loaded from our environment file.
+      globalConfig = globalProps
     
       // Android configuration.
-
       compileSdkVersion = 25
       buildToolsVersion = '25.0.3'
       minSdkVersion = 19 // KitKat (4.4.x)

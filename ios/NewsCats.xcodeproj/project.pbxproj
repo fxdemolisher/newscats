@@ -18,6 +18,7 @@
 		5BDBA63B1F3B805500CB399D /* EnvironmentBridge.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BDBA6361F3B805500CB399D /* EnvironmentBridge.swift */; };
 		5BDBA63C1F3B805500CB399D /* NavigationBridge.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BDBA6371F3B805500CB399D /* NavigationBridge.swift */; };
 		5BDBA63D1F3B805500CB399D /* ReactNativeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BDBA6381F3B805500CB399D /* ReactNativeViewController.swift */; };
+		5BDE65FD1F5A1F0F007C9449 /* GlobalConfig-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 5BDE65FC1F5A1F0F007C9449 /* GlobalConfig-Info.plist */; };
 		5BEE09A91F3CF7CA0054D918 /* BuildEnvironment-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 5BEE09A81F3CF7CA0054D918 /* BuildEnvironment-Info.plist */; };
 		5BEE09C11F3CFDC00054D918 /* README.md in Sources */ = {isa = PBXBuildFile; fileRef = 5BEE09B31F3CFDC00054D918 /* README.md */; };
 		5BEE09C21F3CFDC00054D918 /* Roboto-Black.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 5BEE09B41F3CFDC00054D918 /* Roboto-Black.ttf */; };
@@ -35,6 +36,13 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
+		5B2E1D9E1F59A4D300401D0D /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 5BAD88F81F3B38AC003BCB29 /* Pods.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 150426013DFA888DA054E65C6A14287C;
+			remoteInfo = "react-native-video";
+		};
 		5BAD89001F3B38AD003BCB29 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 5BAD88F81F3B38AC003BCB29 /* Pods.xcodeproj */;
@@ -87,6 +95,7 @@
 		5BDBA6361F3B805500CB399D /* EnvironmentBridge.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EnvironmentBridge.swift; sourceTree = "<group>"; };
 		5BDBA6371F3B805500CB399D /* NavigationBridge.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NavigationBridge.swift; sourceTree = "<group>"; };
 		5BDBA6381F3B805500CB399D /* ReactNativeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReactNativeViewController.swift; sourceTree = "<group>"; };
+		5BDE65FC1F5A1F0F007C9449 /* GlobalConfig-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GlobalConfig-Info.plist"; sourceTree = "<group>"; };
 		5BEE09A81F3CF7CA0054D918 /* BuildEnvironment-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "BuildEnvironment-Info.plist"; sourceTree = "<group>"; };
 		5BEE09B21F3CFDC00054D918 /* LICENSE.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = LICENSE.txt; path = Fonts/LICENSE.txt; sourceTree = "<group>"; };
 		5BEE09B31F3CFDC00054D918 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; name = README.md; path = Fonts/README.md; sourceTree = "<group>"; };
@@ -148,7 +157,7 @@
 		5BAD88E51F3B37F3003BCB29 /* NewsCats */ = {
 			isa = PBXGroup;
 			children = (
-				5BEE09B11F3CFDAA0054D918 /* Fonts */,
+				5BDE65FC1F5A1F0F007C9449 /* GlobalConfig-Info.plist */,
 				5BEE09A81F3CF7CA0054D918 /* BuildEnvironment-Info.plist */,
 				5BAD88F21F3B37F4003BCB29 /* Info.plist */,
 				5BA6E23C1F3B3E50007E89E4 /* ReactNative.storyboard */,
@@ -160,6 +169,7 @@
 				5BDBA6371F3B805500CB399D /* NavigationBridge.swift */,
 				5BDBA6381F3B805500CB399D /* ReactNativeViewController.swift */,
 				5BAD88ED1F3B37F4003BCB29 /* Assets.xcassets */,
+				5BEE09B11F3CFDAA0054D918 /* Fonts */,
 				5BAD88EF1F3B37F4003BCB29 /* LaunchScreen.storyboard */,
 			);
 			path = NewsCats;
@@ -172,6 +182,7 @@
 				5BAD89031F3B38AD003BCB29 /* Freddy.framework */,
 				5BAD89051F3B38AD003BCB29 /* Pods_NewsCats.framework */,
 				5BAD89071F3B38AD003BCB29 /* React.framework */,
+				5B2E1D9F1F59A4D300401D0D /* react_native_video.framework */,
 				5BAD89091F3B38AD003BCB29 /* yoga.framework */,
 			);
 			name = Products;
@@ -215,6 +226,7 @@
 			buildConfigurationList = 5BAD88F51F3B37F4003BCB29 /* Build configuration list for PBXNativeTarget "NewsCats" */;
 			buildPhases = (
 				839456B9B8BBD9D08FC9BD0B /* [CP] Check Pods Manifest.lock */,
+				5B2E1DA01F59A4F100401D0D /* Load dotenv environment file */,
 				5BEE09A61F3CF6C00054D918 /* Build machine IP */,
 				5BAD88DF1F3B37F3003BCB29 /* Sources */,
 				5BAD88E01F3B37F3003BCB29 /* Frameworks */,
@@ -222,6 +234,7 @@
 				5BEE09A71F3CF72C0054D918 /* RN Bundle */,
 				E83A89B82F5260C5F977011C /* [CP] Embed Pods Frameworks */,
 				41F3E47817F983DA3835DF83 /* [CP] Copy Pods Resources */,
+				5BDE65F91F5A1597007C9449 /* Fabric dSym */,
 			);
 			buildRules = (
 			);
@@ -274,6 +287,13 @@
 /* End PBXProject section */
 
 /* Begin PBXReferenceProxy section */
+		5B2E1D9F1F59A4D300401D0D /* react_native_video.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = react_native_video.framework;
+			remoteRef = 5B2E1D9E1F59A4D300401D0D /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
 		5BAD89011F3B38AD003BCB29 /* BVLinearGradient.framework */ = {
 			isa = PBXReferenceProxy;
 			fileType = wrapper.framework;
@@ -328,6 +348,7 @@
 				5BEE09C31F3CFDC00054D918 /* Roboto-BlackItalic.ttf in Resources */,
 				5BEE09CD1F3CFDC00054D918 /* Roboto-ThinItalic.ttf in Resources */,
 				5BAD88EE1F3B37F4003BCB29 /* Assets.xcassets in Resources */,
+				5BDE65FD1F5A1F0F007C9449 /* GlobalConfig-Info.plist in Resources */,
 				5BEE09C61F3CFDC00054D918 /* Roboto-Italic.ttf in Resources */,
 				5BEE09CB1F3CFDC00054D918 /* Roboto-Regular.ttf in Resources */,
 				5BEE09C41F3CFDC00054D918 /* Roboto-Bold.ttf in Resources */,
@@ -353,6 +374,34 @@
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-NewsCats/Pods-NewsCats-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
+		5B2E1DA01F59A4F100401D0D /* Load dotenv environment file */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Load dotenv environment file";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "${SRCROOT}/generateGlobalConfigPlist.sh";
+		};
+		5BDE65F91F5A1597007C9449 /* Fabric dSym */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Fabric dSym";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "${SRCROOT}/uploadFabricDsym.sh";
+		};
 		5BEE09A61F3CF6C00054D918 /* Build machine IP */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -369,7 +418,7 @@
 		};
 		5BEE09A71F3CF72C0054D918 /* RN Bundle */ = {
 			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
+			buildActionMask = 12;
 			files = (
 			);
 			inputPaths = (
@@ -562,7 +611,7 @@
 				ENVIRONMENT_NAME = debug;
 				INFOPLIST_FILE = NewsCats/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.fxdemolisher.newscats;
+				PRODUCT_BUNDLE_IDENTIFIER = com.fxdemolisher.newscats.dev;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
