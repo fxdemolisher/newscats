@@ -72,9 +72,9 @@ class ImageButton extends BaseComponent {
                               shouldRasterizeIOS={true}
                               style={containerStyle}>
 
-                <Animated.Image resizeMode="center"
-                          source={this.props.imageSource}
-                          style={buttonStyle} />
+                <Animated.Image resizeMode="cover"
+                                source={this.props.imageSource}
+                                style={buttonStyle} />
 
             </TouchableOpacity>
         )
