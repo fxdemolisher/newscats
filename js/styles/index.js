@@ -9,6 +9,7 @@ import {Responsive} from './responsive'
  *   const foo = Styles.Color.Black
  */
 const Color = {
+    Amber500: ColorManipulator.default('#FFC107FF'),
     Black: ColorManipulator.default('#000000FF'),
     Clear: ColorManipulator.default('#FFFFFF00'),
     Green500: ColorManipulator.default('#4CAF50FF'),

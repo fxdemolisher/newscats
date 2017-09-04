@@ -70,7 +70,7 @@ class Store {
             // - 'feed' is ignored since we refresh it every time
             // - 'nav' is ignored so that navigation state doesn't persist
             // - 'storage' is ignored since it is just a convinience state property to allow access to this instance.
-            blacklist: ['feed', 'nav', 'storage'],
+            blacklist: ['feed', 'nav', 'sourcePacksDownload', 'storage'],
 
             // Debounce interval (ms) between store calls.
             debounce: 250,

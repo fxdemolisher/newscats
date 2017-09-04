@@ -1,4 +1,5 @@
 import {refreshSources} from './feedFetcher'
+import {parseSourcePacks} from './packParsers'
 
 /**
  * Various action types in the app.
@@ -8,9 +9,11 @@ import {refreshSources} from './feedFetcher'
 export const Action = {
     SetFeed: 'SetFeed',
     ToggleSource: 'ToggleSource',
+    MergeSources: 'MergeSources',
     AddFavorite: 'AddFavorite',
     RemoveFavorite: 'RemoveFavorite',
     MarkSeen: 'MarkSeen',
+    SetSourcePacksDownloadStatus: 'SetSourcePacksDownloadStatus',
 }
 
 /**
@@ -20,6 +23,15 @@ export const FeedStatus = {
     NotInitialized: 'NotInitialized',
     Refreshing: 'Refreshing',
     Ready: 'Ready',
+}
+
+/**
+ * Statuses that pack download can take (state.sourcePacksDownload.status).
+ */
+export const SourcePacksDownloadStatus = {
+    Idle: 'Idle',
+    Downloading: 'Downloading',
+    Error: 'Error',
 }
 
 /**
@@ -66,6 +78,51 @@ export function toggleSource(key, enabled) {
         })
 
         dispatch(refreshFeed())
+    }
+}
+
+/**
+ * Triggers the download of the latest source packs from github, and merges them with the current sources
+ * when ready. If an error occurs during download, nothing is done.
+ */
+export function downloadLatestSourcePacks() {
+    return (dispatch) => {
+        dispatch({
+            type: Action.SetSourcePacksDownloadStatus,
+            status: SourcePacksDownloadStatus.Downloading,
+        })
+
+        const downloadUrl = 'https://raw.githubusercontent.com/fxdemolisher/newscats/master/js/assets/sourcePacks.json'
+        const downloadedPacks = fetch(downloadUrl)
+            .then((response) => (response.json()))
+            .then((json) => {
+                const downloadedPacks = parseSourcePacks(json)
+
+                const newSourcePacksMap = {}
+                downloadedPacks.forEach((pack) => {
+                    newSourcePacksMap[pack.key] = pack
+                })
+
+                dispatch({
+                    type: Action.MergeSources,
+                    newSourcePacksMap: newSourcePacksMap,
+                })
+
+                dispatch(refreshFeed())
+
+                dispatch({
+                    type: Action.SetSourcePacksDownloadStatus,
+                    status: SourcePacksDownloadStatus.Idle,
+                })
+            })
+            .catch((err) => {
+                dispatch({
+                    type: Action.SetSourcePacksDownloadStatus,
+                    status: SourcePacksDownloadStatus.Error,
+                })
+
+                console.log("ERROR: ", err)
+            })
     }
 }
 

@@ -11,7 +11,7 @@ import {DebugScreen} from './debug'
 import {DetailsScreen} from './details'
 import {FavoritesScreen} from './favorites'
 import {HomeScreen} from './home'
-import {favoritesReducer, feedReducer, seenKeysReducer, sourcesReducer} from './reducers'
+import {favoritesReducer, feedReducer, seenKeysReducer, sourcePacksDownloadReducer, sourcesReducer} from './reducers'
 import {SettingsScreen} from './settings'
 
 const styles = {
@@ -159,6 +159,7 @@ const rootReducer = combineReducers({
     feed: feedReducer,
     nav: navReducer,
     seenKeys: seenKeysReducer,
+    sourcePacksDownload: sourcePacksDownloadReducer,
     sources: sourcesReducer,
     storage: (state = {}) => (state), // Required so that storage is available everywhere.
 })

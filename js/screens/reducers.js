@@ -1,8 +1,10 @@
 import moment from 'moment'
 import {REHYDRATE} from 'redux-persist/constants'
 
+import {Assets} from '/assets'
+
 import * as Actions from './actions'
-import {defaultSourcePacks} from './defaultSources'
+import {parseSourcePacks} from './packParsers'
 
 /**
  * The feed starts out as no initialized and empty.
@@ -29,15 +31,29 @@ export function feedReducer(state = initialFeedState, action) {
 }
 
 /**
- * Initial state for state.sources. A remap of the defaultSources.defaultSourcePacks array.
+ * Helper function to merge the 'sources' states when updating from downloadable file.
+ * NOTE: this does not merge with the raw file contents but with the parsed version (see packParsers).
  */
-const initialSourcesState = defaultSourcePacks.reduce(
-    (result, pack) => {
-        result[pack.key] = {
-            ...pack,
-            enabled: true,
+function mergeSourcePacks(previousMap = {}, currentMap) {
+    const copy = {...previousMap}
+    Object.keys(currentMap).forEach((key) => {
+        const value = {...currentMap[key]}
+        if (previousMap[key]) {
+            value.enabled = previousMap[key].enabled
         }
 
+        copy[key] = value
+    })
+
+    return copy
+}
+
+/**
+ * Initial state for state.sources. Contains the parsed version of sourcePacks.json included with the app.
+ */
+const initialSourcesState = parseSourcePacks(Assets.sourcePacks).reduce(
+    (result, pack) => {
+        result[pack.key] = pack
         return result
     },
     {}
@@ -56,6 +72,9 @@ export function sourcesReducer(state = initialSourcesState, action) {
                     enabled: action.enabled,
                 }
             }
+
+        case Actions.Action.MergeSources:
+            return mergeSourcePacks(state, action.newSourcePacksMap)
     }
 
     return state
@@ -109,6 +128,28 @@ export function seenKeysReducer(state = {}, action) {
             })
 
             return copy
+    }
+
+    return state
+}
+
+/**
+ * Initial state for state.sourcePacksDownload
+ */
+const initialSourcePacksDownloadState = {
+    status: Actions.SourcePacksDownloadStatus.Idle,
+}
+
+/**
+ * Reducer for state.sourcePacksDownload, tracking the download status of source packs from github.
+ */
+export function sourcePacksDownloadReducer(state = initialSourcePacksDownloadState, action) {
+    switch (action.type) {
+        case Actions.Action.SetSourcePacksDownloadStatus:
+            return {
+                ...state,
+                status: action.status,
+            }
     }
 
     return state

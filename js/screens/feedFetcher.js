@@ -1,4 +1,4 @@
-import {toFeed} from './parsers'
+import {toFeed} from './sourceParsers'
 
 /**
  * Starts the process of refreshing the feed for a list of source packs and a set of item keys that the user has already

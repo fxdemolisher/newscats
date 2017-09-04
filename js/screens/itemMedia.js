@@ -7,7 +7,7 @@ import {Images} from '/images'
 import {Styles} from '/styles'
 import {BaseComponent, ImageButton} from '/widgets'
 
-import {ItemMediaType} from './parsers'
+import {ItemMediaType} from './sourceParsers'
 
 const styles = {
     fillScreen: {
@@ -162,7 +162,7 @@ class VideoMedia extends BaseComponent {
  */
 class ItemMedia extends BaseComponent {
     static defaultProps = {
-        // The type of media that will be displayed. One of parsers.ItemMediaType.
+        // The type of media that will be displayed. One of sourceParsers.ItemMediaType.
         mediaType: null,
 
         // The url of the media to display.

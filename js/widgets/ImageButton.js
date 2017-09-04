@@ -1,5 +1,5 @@
 import React from 'react'
-import {Image, StyleSheet, TouchableOpacity} from 'react-native'
+import {Animated, StyleSheet, TouchableOpacity} from 'react-native'
 
 import {Styles} from '/styles'
 
@@ -72,9 +72,9 @@ class ImageButton extends BaseComponent {
                               shouldRasterizeIOS={true}
                               style={containerStyle}>
 
-                <Image resizeMode="center"
-                       source={this.props.imageSource}
-                       style={buttonStyle} />
+                <Animated.Image resizeMode="center"
+                          source={this.props.imageSource}
+                          style={buttonStyle} />
 
             </TouchableOpacity>
         )
