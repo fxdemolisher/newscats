@@ -24,8 +24,7 @@ This project is based on the [react-native-skeleton](https://github.com/fxdemoli
 
 ## TODOs:
 
-1. Add crash tracking
-1. App store distribution
+1. [in progress] App store distribution
 1. Add FlowType and lint config
 1. Revisit pinch-to-zoom implementation (try react-native-photo-view)
 1. [BLOCKED] Revisit navigation horizontal gesture limit (swipe to dismiss)

@@ -1,0 +1,121 @@
+{
+  "formatVersion": 1,
+  "packs": [
+    {
+      "enabledByDefault": true,
+      "key": "35eef7f5-7cec-4f4e-a130-d12b7f02fad3",
+      "parser": "Reddit",
+      "title": "Cats of Reddit",
+      "sources": [
+        {
+          "title": "/r/Cats",
+          "url": "https://www.reddit.com/r/cats/.json?limit=25&raw_json=1"
+        },
+        {
+          "title": "/r/CatReactionGifs",
+          "url": "https://www.reddit.com/r/catreactiongifs/.json?limit=25&raw_json=1"
+        },
+        {
+          "title": "/r/Kittens",
+          "url": "https://www.reddit.com/r/kittens/.json?limit=25&raw_json=1"
+        },
+        {
+          "title": "/r/KittenGifs",
+          "url": "https://www.reddit.com/r/kittengifs/.json?limit=25&raw_json=1"
+        },
+        {
+          "title": "'/r/CatGifs",
+          "url": "https://www.reddit.com/r/CatGifs/.json?limit=25&raw_json=1"
+        }
+      ]
+    },
+    {
+      "enabledByDefault": true,
+      "key": "af20907e-4b00-4278-bd18-92f44d9e8530",
+      "parser": "Instagram",
+      "title": "Cat Fostering & Rescue @ Instagram",
+      "sources": [
+        {
+          "title": "Foster home for kittens in WA",
+          "url": "https://www.instagram.com/twilight_foster_kittens/media/"
+        },
+        {
+          "title": "Foster_Babies",
+          "url": "https://www.instagram.com/kitty_fostering_oz/media/"
+        },
+        {
+          "title": "Rachael and Foster Kittens",
+          "url": "https://www.instagram.com/okfosterkitties/media/"
+        },
+        {
+          "title": "Foster Kittens In Bay Area, CA",
+          "url": "https://www.instagram.com/jessies_foster_kittens/media/"
+        },
+        {
+          "title": "Kitten Foster Home 🐱 Vancouver Island, BC",
+          "url": "https://www.instagram.com/whiskersnpurrs/media/"
+        },
+        {
+          "title": "love2foster",
+          "url": "https://www.instagram.com/love2foster/media/"
+        },
+        {
+          "title": "Welcome To Mini Cat Town!",
+          "url": "https://www.instagram.com/minicattown/media/"
+        },
+        {
+          "title": "TinyKittens HQ",
+          "url": "https://www.instagram.com/tinykittenshq/media/"
+        },
+        {
+          "title": "ZucasKittens",
+          "url": "https://www.instagram.com/zucaskittens/media/?hl=en"
+        }
+      ]
+    },
+    {
+      "enabledByDefault": true,
+      "key": "cb4acc7c-f06b-45a4-b695-dcbbea3a7248",
+      "parser": "Instagram",
+      "title": "Cats of Instagram",
+      "sources": [
+        {
+          "title": "Bodega Cats",
+          "url": "https://www.instagram.com/bodegacatsofinstagram/media/"
+        },
+        {
+          "title": "midori",
+          "url": "https://www.instagram.com/midorinotanbo/media/?hl=en"
+        },
+        {
+          "title": "Serena Boleto | Philadelphia",
+          "url": "https://www.instagram.com/veggiedayz/media/"
+        }
+      ]
+    },
+    {
+      "enabledByDefault": false,
+      "key": "80e91af1-b7b2-48c9-b631-b88a82a41c60",
+      "parser": "Reddit",
+      "title": "Dogs of Reddit",
+      "sources": [
+        {
+          "title": "/r/dogpictures",
+          "url": "https://www.reddit.com/r/dogpictures/.json?limit=25&raw_json=1"
+        },
+        {
+          "title": "/r/dogswearinghats",
+          "url": "https://www.reddit.com/r/dogswearinghats/.json?limit=25&raw_json=1"
+        },
+        {
+          "title": "/r/corgi",
+          "url": "https://www.reddit.com/r/corgi/.json?limit=25&raw_json=1"
+        },
+        {
+          "title": "/r/lookatmydog",
+          "url": "https://www.reddit.com/r/lookatmydog/.json?limit=25&raw_json=1"
+        }
+      ]
+    }
+  ]
+}
