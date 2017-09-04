@@ -35,6 +35,16 @@ then
     echo ${FABRIC_BUILD_SECRET} > ${TEMP_BUILD_SECRET_FILE}
 fi
 
+BUILD_MACHINE_OVERRIDE_SECTION=""
+if [ ! -z ${BUILD_MACHINE_IP_OVERRIDE} ]
+then
+    echo "Found build machine up override"
+    BUILD_MACHINE_OVERRIDE_SECTION=$(cat << EOF
+        <key>BUILD_MACHINE_IP_OVERRIDE</key>
+        <string>${BUILD_MACHINE_IP_OVERRIDE}</string>
+    )
+fi
+
 CONFIG_PLIST="${SRCROOT}/NewsCats/GlobalConfig-Info.plist"
 echo "Writing global config plist: $CONFIG_PLIST"
 
@@ -45,6 +55,7 @@ cat << EOF > "${CONFIG_PLIST}"
 <plist version="1.0">
 <dict>
 $FABRIC_SECTION
+$BUILD_MACHINE_OVERRIDE_SECTION
 </dict>
 </plist>
 EOF

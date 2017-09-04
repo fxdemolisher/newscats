@@ -18,6 +18,7 @@ class EnvironmentBridge : NSObject, RCTBridgeModule {
     func methodsToExport() -> [RCTBridgeMethod]! {
         return [
             BridgeMethodWrapper(name: "current", .callback(currentEnvironment)),
+            BridgeMethodWrapper(name: "globalConfig", .callback(globalConfig)),
             BridgeMethodWrapper(name: "localBundleInDebug", .oneWay(localBundleInDebug)),
         ]
     }
@@ -30,6 +31,19 @@ class EnvironmentBridge : NSObject, RCTBridgeModule {
         let appDelegate = UIApplication.shared.delegate as! AppDelegate
         let environment = appDelegate.environment!
         let jsonContent = try! environment.toJSON().serialize()
+        let json = String(data: jsonContent, encoding: String.Encoding.utf8)!
+        
+        callback(nil, json)
+    }
+    
+    /**
+     * Returns the current global config of the app as a serialized JSON string.
+     */
+    func globalConfig(_ bridge: RCTBridge, _ arguments: [Any],
+                      _ callback: @escaping (Any?, Any?) -> Void) throws -> Void {
+        let appDelegate = UIApplication.shared.delegate as! AppDelegate
+        let globalConfig = appDelegate.globalConfig!
+        let jsonContent = try! globalConfig.toJSON().serialize()
         let json = String(data: jsonContent, encoding: String.Encoding.utf8)!
         
         callback(nil, json)

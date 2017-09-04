@@ -39,11 +39,17 @@ class ReactNativeViewController : UIViewController, RCTBridgeDelegate {
      */
     func sourceURL(for bridge: RCTBridge!) -> URL! {
         let appDelegate = UIApplication.shared.delegate as! AppDelegate
+        let globalConfig = appDelegate.globalConfig!
         let environment = appDelegate.environment!
+        
+        var buildMachineIp = environment.buildMachineIp
+        if let override = globalConfig.buildMachineIpOverride, !override.isEmpty {
+            buildMachineIp = override
+        }
         
         var bundleUrl = Bundle.main.url(forResource: "main", withExtension: "jsbundle")!
         if (environment.name == "debug" && !environment.localBundleInDebug) {
-            bundleUrl = URL(string: "http://\(environment.buildMachineIp):8081/js/index.ios.bundle")!
+            bundleUrl = URL(string: "http://\(buildMachineIp):8081/js/index.ios.bundle")!
         }
         
         return bundleUrl

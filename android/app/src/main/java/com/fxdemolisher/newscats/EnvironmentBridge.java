@@ -39,6 +39,25 @@ public class EnvironmentBridge extends ReactContextBaseJavaModule {
         callback.invoke(null, jsonString);
     }
 
+    /**
+     * When called, serializes the global config to JSON and invokes the callback with the JSON as
+     * the second parameter (null, envJson).
+     */
+    @ReactMethod
+    public void globalConfig(Callback callback) {
+        MainApplication application = (MainApplication) getReactApplicationContext().getApplicationContext();
+        GlobalConfig globalConfig = application.getGlobalConfig();
+
+        String jsonString;
+        try {
+            jsonString = globalConfig.toJsonObject().toString();
+        } catch (JSONException e) {
+            throw new RuntimeException(e);
+        }
+
+        callback.invoke(null, jsonString);
+    }
+
     @ReactMethod
     public void localBundleInDebug(boolean localBundleInDebug) {
         EnvironmentManager.setLocalBundleInDebug(

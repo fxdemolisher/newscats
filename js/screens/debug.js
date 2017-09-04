@@ -76,7 +76,15 @@ class DebugScreen extends BaseComponent {
         this.state = { }
 
         NativeModules.env.current((err, jsonString) => {
-            this.setState({ env: JSON.parse(jsonString) })
+            const currentEnv = JSON.parse(jsonString)
+            NativeModules.env.globalConfig((err, jsonString) => {
+                const env = {
+                    ...currentEnv,
+                    ...JSON.parse(jsonString),
+                }
+
+                this.setState({ env:  env})
+            })
         })
     }
 

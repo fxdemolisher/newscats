@@ -85,6 +85,15 @@ android {
         ndk {
             abiFilters "armeabi-v7a", "x86"
         }
+
+        // Bridge some generated keys and the global config to the android build config.
+        buildConfigField("String", "BUILD_MACHINE_IP", "\"${getBuildMachineIp()}\"")
+        if (project.ext.globalConfig != null && !project.ext.globalConfig.empty) {
+            project.ext.globalConfig.each() { key, value ->
+                buildConfigField("String", "GLOBAL_CONFIG_${key}", "\"${value}\"")
+            }
+        }
+
     }
 
     splits {
@@ -97,17 +106,13 @@ android {
     }
 
     buildTypes {
-        def buildMachineIp = "\"${getBuildMachineIp()}\""
-
         debug {
             applicationIdSuffix ".dev"
 
             buildConfigField "String", "ENVIRONMENT_NAME", '"debug"'
-            buildConfigField "String", "BUILD_MACHINE_IP", buildMachineIp
         }
         release {
             buildConfigField "String", "ENVIRONMENT_NAME", '"release"'
-            buildConfigField "String", "BUILD_MACHINE_IP", buildMachineIp
 
             minifyEnabled enableProguardInReleaseBuilds
             proguardFiles getDefaultProguardFile("proguard-android.txt"), "proguard-rules.pro"

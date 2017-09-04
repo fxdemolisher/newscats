@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		374321CCEE6B6E5BACCB05CE /* Pods_NewsCats.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4FB01C5DFE1B6185649D61C3 /* Pods_NewsCats.framework */; };
+		5B1EE3011F5DB08400841A47 /* GlobalConfigManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B1EE3001F5DB08400841A47 /* GlobalConfigManager.swift */; };
 		5BA6E23D1F3B3E50007E89E4 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BA6E23B1F3B3E50007E89E4 /* AppDelegate.swift */; };
 		5BA6E23E1F3B3E50007E89E4 /* ReactNative.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5BA6E23C1F3B3E50007E89E4 /* ReactNative.storyboard */; };
 		5BA6E2421F3B401F007E89E4 /* EnvironmentManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BA6E2411F3B401F007E89E4 /* EnvironmentManager.swift */; };
@@ -82,6 +83,7 @@
 
 /* Begin PBXFileReference section */
 		4FB01C5DFE1B6185649D61C3 /* Pods_NewsCats.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_NewsCats.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		5B1EE3001F5DB08400841A47 /* GlobalConfigManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GlobalConfigManager.swift; sourceTree = "<group>"; };
 		5BA6E23B1F3B3E50007E89E4 /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		5BA6E23C1F3B3E50007E89E4 /* ReactNative.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = ReactNative.storyboard; sourceTree = "<group>"; };
 		5BA6E2411F3B401F007E89E4 /* EnvironmentManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EnvironmentManager.swift; sourceTree = "<group>"; };
@@ -157,14 +159,15 @@
 		5BAD88E51F3B37F3003BCB29 /* NewsCats */ = {
 			isa = PBXGroup;
 			children = (
-				5BDE65FC1F5A1F0F007C9449 /* GlobalConfig-Info.plist */,
 				5BEE09A81F3CF7CA0054D918 /* BuildEnvironment-Info.plist */,
+				5BDE65FC1F5A1F0F007C9449 /* GlobalConfig-Info.plist */,
 				5BAD88F21F3B37F4003BCB29 /* Info.plist */,
 				5BA6E23C1F3B3E50007E89E4 /* ReactNative.storyboard */,
 				5BA6E23B1F3B3E50007E89E4 /* AppDelegate.swift */,
 				5BDBA6341F3B805500CB399D /* BridgeMethodWrapper.swift */,
 				5BDBA6361F3B805500CB399D /* EnvironmentBridge.swift */,
 				5BA6E2411F3B401F007E89E4 /* EnvironmentManager.swift */,
+				5B1EE3001F5DB08400841A47 /* GlobalConfigManager.swift */,
 				5BDBA6351F3B805500CB399D /* InvalidBridgeArgumentError.swift */,
 				5BDBA6371F3B805500CB399D /* NavigationBridge.swift */,
 				5BDBA6381F3B805500CB399D /* ReactNativeViewController.swift */,
@@ -483,6 +486,7 @@
 			files = (
 				5BDBA63A1F3B805500CB399D /* InvalidBridgeArgumentError.swift in Sources */,
 				5BDBA63B1F3B805500CB399D /* EnvironmentBridge.swift in Sources */,
+				5B1EE3011F5DB08400841A47 /* GlobalConfigManager.swift in Sources */,
 				5BA6E23D1F3B3E50007E89E4 /* AppDelegate.swift in Sources */,
 				5BDBA6391F3B805500CB399D /* BridgeMethodWrapper.swift in Sources */,
 				5BA6E2421F3B401F007E89E4 /* EnvironmentManager.swift in Sources */,

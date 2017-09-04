@@ -10,10 +10,14 @@ import UIKit
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
+    var globalConfig: GlobalConfigManager.GlobalConfig?
     var environment: EnvironmentManager.Environment?
     var latestKnownLaunchOptions: [UIApplicationLaunchOptionsKey: Any]?
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
+        
+        // Initialize global config.
+        globalConfig = GlobalConfigManager.create()
         
         // Initialize fabric.
         initializeFabric()
@@ -39,18 +43,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
      * Initializes Fabric/Crashlytics if an API key is supplied via our environment.
      */
     func initializeFabric() {
-        guard let path = Bundle.main.path(forResource: "GlobalConfig-Info", ofType: "plist") else {
-            print ("WARNING: No global config found, skipping fabric initialization")
+        guard let fabricApiKey = globalConfig?.fabricApiKey, !fabricApiKey.isEmpty else {
+            print ("WARNIGN: Fabric API key is blank or missing, skipping fabric initialization")
             return
         }
         
-        let infoDict = NSDictionary(contentsOfFile: path) as! [String : Any]
-        let apiKey = infoDict["FABRIC_API_KEY"] as! String
-        guard !apiKey.isEmpty else {
-            print ("WARNIGN: global config found, but API key is blank, skipping fabric initialization")
-            return
-        }
-        
-        Crashlytics.start(withAPIKey: apiKey)
+        Crashlytics.start(withAPIKey: fabricApiKey)
     }
 }

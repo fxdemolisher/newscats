@@ -18,11 +18,15 @@ import io.fabric.sdk.android.services.common.ApiKey;
  */
 public class MainApplication extends Application implements ReactApplication {
     private ReactNativeHost host;
+    private GlobalConfig globalConfig;
     private Environment environment;
 
     @Override
     public void onCreate() {
         super.onCreate();
+
+        // Initialize global configuration first.
+        globalConfig = new GlobalConfig();
 
         // Initialize Fabric.
         initializeFabric();
@@ -39,6 +43,10 @@ public class MainApplication extends Application implements ReactApplication {
         return host;
     }
 
+    public GlobalConfig getGlobalConfig() {
+        return globalConfig;
+    }
+
     public Environment getEnvironment() {
         return environment;
     }
@@ -48,7 +56,16 @@ public class MainApplication extends Application implements ReactApplication {
 
         // Makes sure that the 'debug_http_host' global setting is set properly for our environment.
         // RN's dev bridge reads this setting to point to the dev server to download the bundle.
-        String debugHost = (!environment.localBundleInDebug ? environment.buildMachineIp + ":8081" : null);
+        String buildMachineIp = environment.buildMachineIp;
+        if (!globalConfig.buildMachineIpOverride.trim().isEmpty()) {
+            buildMachineIp = globalConfig.buildMachineIpOverride;
+        }
+
+        String debugHost = null;
+        if (buildMachineIp != null && !buildMachineIp.trim().isEmpty()) {
+            debugHost = (!environment.localBundleInDebug ? buildMachineIp + ":8081" : null);
+        }
+
         PreferenceManager.getDefaultSharedPreferences(this)
                 .edit()
                 .putString(Flags.REACT_NATIVE_DEBUG_HOST_IP, debugHost)
