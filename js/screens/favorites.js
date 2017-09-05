@@ -179,8 +179,6 @@ class FavoritesScreen extends BaseComponent {
         const params = this.props.navigation.state.params
         const filter = (params ? params.filter : null)
 
-        console.log("@@@", params, filter)
-
         const favorites = Object.values(this.props.favorites)
             .sort((left, right) => {
                 if (left.timestamp.isBefore(right.timestamp)) {
