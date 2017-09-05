@@ -6,11 +6,6 @@ import UIKit
  * A view controller that hosts our entire react native app.
  */
 class ReactNativeViewController : UIViewController, RCTBridgeDelegate {
-    // Hide the phone's status bar.
-    override var prefersStatusBarHidden : Bool {
-        return true
-    }
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         

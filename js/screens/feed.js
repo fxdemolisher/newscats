@@ -32,9 +32,9 @@ const styles = {
     },
     itemText: {
         flex: 1,
-        paddingBottom: Styles.Size.Small,
+        paddingBottom: Styles.Size.XSmall,
         paddingHorizontal: Styles.Size.Small,
-        paddingTop: Styles.Size.XSmall,
+        paddingTop: Styles.Size.Small,
     },
     title: {
         backgroundColor: Styles.Color.Clear,

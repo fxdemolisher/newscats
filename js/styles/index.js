@@ -25,6 +25,7 @@ const Color = {
     Grey900: ColorManipulator.default('#212121FF'),
     Red500: ColorManipulator.default('#F44336FF'),
     Red600: ColorManipulator.default('#E53935FF'),
+    Red700: ColorManipulator.default('#D32F2FFF'),
     RedA400: ColorManipulator.default('#FF1744FF'),
     White: ColorManipulator.default('#FFFFFFFF'),
 }

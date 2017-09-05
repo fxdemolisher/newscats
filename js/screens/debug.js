@@ -66,7 +66,7 @@ ResetButton = connect((state) => ({ storage: state.storage }))(ResetButton)
  */
 class DebugScreen extends BaseComponent {
     static navigationOptions = {
-        title: 'Application Information',
+        title: 'Debug Information',
         headerRight: (<ResetButton />),
     }
 

@@ -1,5 +1,6 @@
 package com.fxdemolisher.newscats;
 
+import android.os.Build;
 import android.os.Bundle;
 
 import com.facebook.react.ReactActivity;
@@ -15,6 +16,11 @@ public class MainActivity extends ReactActivity {
         super.onCreate(savedInstanceState);
 
         setTitle(R.string.app_name);
+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            getWindow().setStatusBarColor(getResources().getColor(R.color.red700));
+        }
+
     }
 
     /**
