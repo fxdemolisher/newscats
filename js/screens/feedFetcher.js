@@ -12,7 +12,7 @@ export function refreshSources(sourcePacks, seenKeysSet) {
         }
 
         pack.sources.forEach((source) => {
-            const sourceFeed = sourceToFeed(source)
+            const sourceFeed = sourceToFeed(pack, source)
             sourceFeeds.push(sourceFeed)
         })
     })
@@ -42,10 +42,19 @@ export function refreshSources(sourcePacks, seenKeysSet) {
 /**
  * Given a source, returns a promise that when resolved contains the list of items from that source.
  */
-function sourceToFeed(source) {
+function sourceToFeed(pack, source) {
     return fetch(source.url)
         .then((response) => (response.text()))
         .then((responseBody) => (toFeed(source, responseBody)))
+        .then((feed) => (
+            feed.map((item) => (
+                {
+                    ...item,
+                    packTitle: pack.title,
+                    sourceTitle: source.title,
+                }
+            ))
+        ))
         .catch((err) => {
             console.log("ERROR: ", err)
         })

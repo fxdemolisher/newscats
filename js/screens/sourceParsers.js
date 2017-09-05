@@ -29,13 +29,13 @@ const ParserToFunction = {
  * of items that can be displayed in our feed.
  */
 export function toFeed(source, responseBody) {
-    return ParserToFunction[source.parser](source, responseBody)
+    return ParserToFunction[source.parser](responseBody)
 }
 
 /**
  * Parsing function for reddit's JSON format.
  */
-function redditJsonToFeed(source, jsonString) {
+function redditJsonToFeed(jsonString) {
     const json = JSON.parse(jsonString)
     const feed = []
     json.data.children.forEach((entry) => {
@@ -70,7 +70,6 @@ function redditJsonToFeed(source, jsonString) {
             mediaType: mediaType,
             mediaUrl: mediaUrl,
             previewUrl: previewUrl,
-            sourceTitle: source.title,
             timestamp: moment.utc(entry.data.created_utc * 1000),
             title: entry.data.title,
             url: itemUrl,
@@ -85,7 +84,7 @@ function redditJsonToFeed(source, jsonString) {
 /**
  * Parsing function for Instagram's JSON format (/media/).
  */
-function instagramJsonToFeed(source, jsonString) {
+function instagramJsonToFeed(jsonString) {
     const json = JSON.parse(jsonString)
     const feed = []
     json.items.forEach((item) => {
@@ -109,7 +108,6 @@ function instagramJsonToFeed(source, jsonString) {
             mediaType: mediaType,
             mediaUrl: mediaUrl,
             previewUrl: mediaUrl,
-            sourceTitle: source.title,
             timestamp: moment.utc(item.created_time * 1000),
             title: title,
             url: item.link,

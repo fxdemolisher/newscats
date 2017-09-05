@@ -1,5 +1,6 @@
 const Images = {
     download: require('./icon-download.png'),
+    filter: require('./icon-filter.png'),
     info: require('./icon-info.png'),
     logo: require('./icon-logo.png'),
     openNew: require('./icon-open-new.png'),

@@ -187,7 +187,7 @@ class SettingsScreen extends BaseComponent {
                         value={pack.enabled} />
 
                 <Text style={[stylesheet.packText, additionalStyle]}>
-                    {pack.title}
+                    {pack.title} ({pack.sources.length})
                 </Text>
             </View>
         )

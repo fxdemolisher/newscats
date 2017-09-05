@@ -88,7 +88,7 @@ class HeaderActions extends BaseComponent {
 
                 <ImageButton imageSource={Images.openNew}
                              onPress={this.openItem} />
-             </View>
+            </View>
         )
     }
 }
@@ -104,10 +104,14 @@ class DetailsScreen extends BaseComponent {
     static navigationOptions = ({navigation}) => {
         const item = navigation.state.params.item
 
+        const subTitle = [item.packTitle, item.sourceTitle]
+            .filter((item) => (item))
+            .join(' / ')
+
         return {
             gesturesEnabled: true,
             headerTitle: (
-                <DetailsScreenHeader subTitle={item.sourceTitle}
+                <DetailsScreenHeader subTitle={subTitle}
                                      title={item.title} />
             ),
             headerRight: (<HeaderActions item={item} />),
