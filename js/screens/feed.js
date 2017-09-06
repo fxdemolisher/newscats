@@ -15,7 +15,6 @@ const styles = {
         backgroundColor: Styles.Color.White,
         borderRadius: 4,
         elevation: 2,
-        height: Dimensions.get('window').height * 0.75,
         margin: Styles.Size.XSmall,
         padding: Styles.Size.XSmall,
         shadowColor: Styles.Color.Black,
@@ -101,9 +100,10 @@ class FeedItem extends BaseComponent {
                 <View style={stylesheet.card}>
 
                     <View style={stylesheet.itemPreview}>
-                        <ItemMedia mediaType={this.props.item.mediaType}
-                                   url={this.props.item.previewUrl}
-                                   zoomable={false} />
+                        <ItemMedia backgroundColor={Styles.Color.Clear}
+                                   fullScreen={false}
+                                   mediaType={this.props.item.mediaType}
+                                   url={this.props.item.previewUrl} />
                     </View>
 
                     <View style={stylesheet.itemFooter}>

@@ -1,5 +1,5 @@
 import React from 'react'
-import {ActivityIndicator, Image, StyleSheet, View} from 'react-native'
+import {ActivityIndicator, Dimensions, Image, StyleSheet, View} from 'react-native'
 import * as ZoomableImage from 'react-native-transformable-image'
 import Video from 'react-native-video'
 
@@ -13,9 +13,6 @@ const styles = {
     fillScreen: {
         height: '100%',
         width: '100%',
-    },
-    background: {
-        backgroundColor: Styles.Color.Black,
     },
     floatingCenteringContainer: {
         alignItems: 'center',
@@ -36,6 +33,80 @@ const styles = {
 
 const stylesheet = StyleSheet.create(styles)
 
+// Defines the maximum height of the media, a percentage of the screen height.
+const MAX_MEDIA_HEIGHT = Dimensions.get('window').height * 0.65
+
+/**
+ * Calculates the effective width/height of the media frame, depending on its layout and media dimensions.
+ * Takes into account whether we are displaying in full screen or feed mode and whether the media is still loading.
+ */
+function calculateWidthAndHeight(isFullscreen, isLoading, layoutHeight, layoutWidth, mediaHeight, mediaWidth) {
+    // Build a default based on whether we are displaying full screen or not.
+    const defaultDimensions = {
+        height: (isFullscreen ? '100%' : MAX_MEDIA_HEIGHT),
+        width: '100%',
+    }
+
+    // If we're not ready or we're displaying fullscreen, return the default width/height.
+    if (isFullscreen || isLoading || !mediaHeight || !mediaWidth|| !layoutHeight || !layoutWidth) {
+        return defaultDimensions
+    }
+
+    // If the image's height is less than our max, shrink the frame.
+    if (mediaHeight < MAX_MEDIA_HEIGHT) {
+        return {
+            ...defaultDimensions,
+            height: mediaHeight,
+        }
+    }
+
+    // If the target height (adjusted for aspect ratio) is greater than our max, return the default.
+    const ratio = mediaWidth / mediaHeight
+    const targetHeight = layoutWidth / ratio
+    if (targetHeight > MAX_MEDIA_HEIGHT) {
+        return defaultDimensions
+    }
+
+    // Otherwise, return the current layout width and height adjusted for the image's aspect ratio.
+    return {
+        height: targetHeight,
+        width: layoutWidth,
+    }
+}
+
+/**
+ * Given a media components props and state, returns the style used for a View that will contain the media.
+ *
+ * Expected properties in props:
+ *   fullScreen: boolean
+ *
+ * Expected properties in state:
+ *   loading: boolean
+ *   layoutHeight: int|null
+ *   layoutWidth: int|null
+ *   mediaHeight: int|null
+ *   mediaWidth: int|null
+ */
+function getMediaContainerViewStyle(props, state) {
+    const {width, height} = calculateWidthAndHeight(
+        props.fullScreen,
+        state.loading,
+        state.layoutHeight,
+        state.layoutWidth,
+        state.mediaHeight,
+        state.mediaWidth,
+    )
+
+    return {
+        backgroundColor: props.backgroundColor,
+        height: height,
+        width: width,
+    }
+}
+
+/**
+ * Wraps a loading indicator in a container that makes it appear exactly in the center of its parent.
+ */
 class LoadingIndicator extends BaseComponent {
     static defaultProps = {
         // If visible, the indicator is shown.
@@ -53,34 +124,62 @@ class LoadingIndicator extends BaseComponent {
     }
 }
 
+/**
+ * Component used to display image media.
+ */
 class ImageMedia extends BaseComponent {
     static defaultProps = {
+        // If true, we are displaying the image in full screen mode (unrestricted height and zoomable).
+        fullScreen: null,
+
         // Style to apply to the Image component.
         style: null,
 
         // The image's URL.
         url: null,
-
-        // Optional, if set to false, pinch-to-zoom on images is disabled.
-        zoomable: true,
     }
 
     constructor(props) {
         super(props)
 
         this.state = { loading: true }
+
+        Image.getSize(
+            this.props.url,
+            (width, height) => {
+                this.setState({
+                    mediaHeight: height,
+                    mediaWidth: width,
+                })
+            },
+            (err) => {
+                console.log("WARNING: failed to retrieve image dimensions.")
+            }
+        )
     }
 
     onLoadingEnded = () => {
         this.setState({ loading: false })
     }
 
+    onLayout = ({nativeEvent}) => {
+        if (this.state.layoutHeight) {
+            return
+        }
+
+        const {width, height} = nativeEvent.layout
+        this.setState({
+            layoutHeight: height,
+            layoutWidth: width,
+        })
+    }
+
     renderSimpleImage() {
         return (
             <Image onLoadEnd={this.onLoadingEnded}
-                   resizeMode="cover"
+                   resizeMode="contain"
                    source={{ uri: this.props.url }}
-                   style={this.props.style} />
+                   style={stylesheet.fillScreen} />
         )
     }
 
@@ -88,14 +187,15 @@ class ImageMedia extends BaseComponent {
         return (
             <ZoomableImage.default onLoadEnd={this.onLoadingEnded}
                                    source={{ uri: this.props.url }}
-                                   style={this.props.style} />
+                                   style={stylesheet.fillScreen} />
         )
     }
 
     render() {
         return (
-            <View style={stylesheet.background}>
-                {this.props.zoomable ? this.renderZoomableImage() : this.renderSimpleImage()}
+            <View onLayout={this.onLayout}
+                  style={getMediaContainerViewStyle(this.props, this.state)}>
+                {this.props.fullScreen ? this.renderZoomableImage() : this.renderSimpleImage()}
 
                 <LoadingIndicator visible={this.state.loading} />
             </View>
@@ -108,6 +208,11 @@ class ImageMedia extends BaseComponent {
  * Videos start paused with a visible play button.
  */
 class VideoMedia extends BaseComponent {
+    static defaultProps = {
+        // If true, we are displaying the image in full screen mode (unrestricted height).
+        fullScreen: null,
+    }
+
     constructor(props) {
         super(props)
 
@@ -117,9 +222,27 @@ class VideoMedia extends BaseComponent {
         }
     }
 
-    onLoad = () => {
+    onLoad = ({naturalSize}) => {
         this.video.seek(0)
-        this.setState({ loading: false })
+
+        const {height, width} = naturalSize
+        this.setState({
+            loading: false,
+            mediaHeight: height,
+            mediaWidth: width,
+        })
+    }
+
+    onLayout = ({nativeEvent}) => {
+        if (this.state.layoutHeight) {
+            return
+        }
+
+        const {width, height} = nativeEvent.layout
+        this.setState({
+            layoutHeight: height,
+            layoutWidth: width,
+        })
     }
 
     togglePaused = () => {
@@ -138,7 +261,8 @@ class VideoMedia extends BaseComponent {
 
     render() {
         return (
-            <View style={stylesheet.background}>
+            <View onLayout={this.onLayout}
+                  style={getMediaContainerViewStyle(this.props, this.state)}>
                 <Video muted={true}
                        onLoad={this.onLoad}
                        paused={this.state.paused}
@@ -162,28 +286,26 @@ class VideoMedia extends BaseComponent {
  */
 class ItemMedia extends BaseComponent {
     static defaultProps = {
+        // The background color in case the media doesn't fill it's parent fully.
+        backgroundColor: Styles.Color.Black,
+
+        // If true, we are displaying the image in full screen mode.
+        fullScreen: true,
+
         // The type of media that will be displayed. One of sourceParsers.ItemMediaType.
         mediaType: null,
 
         // The url of the media to display.
         url: null,
-
-
     }
 
     render() {
         switch (this.props.mediaType) {
             case ItemMediaType.Image:
-                return (
-                    <ImageMedia style={stylesheet.fillScreen}
-                                url={this.props.url}
-                                zoomable={this.props.zoomable} />
-                )
+                return (<ImageMedia {...this.props} />)
 
             case ItemMediaType.VideoMp4:
-                return (
-                    <VideoMedia url={this.props.url} />
-                )
+                return (<VideoMedia {...this.props} />)
 
             default:
                 throw 'Unknown media type: ' + this.props.mediaType
