@@ -24,7 +24,7 @@ class BridgeMethodWrapper : NSObject, RCTBridgeMethod {
         self.performer = performer
     }
     
-    public var jsMethodName: String! { return name }
+    public var jsMethodName: UnsafePointer<Int8>! { return UnsafePointer<Int8>(name) }
     public var functionType: RCTFunctionType { return .normal }
     
     /**

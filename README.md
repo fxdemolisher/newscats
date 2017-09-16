@@ -24,10 +24,11 @@ This project is based on the [react-native-skeleton](https://github.com/fxdemoli
 
 ## TODOs:
 
-1. [in progress] App store distribution
+1. Start download of fresh packs at start up
 1. Add FlowType and lint config
-1. Revisit pinch-to-zoom implementation (try react-native-photo-view)
+1. [blocked by apple] App store distribution
 1. [BLOCKED] Revisit navigation horizontal gesture limit (swipe to dismiss)
+1. App and other icon refresh
 
 ## Optional components
 
