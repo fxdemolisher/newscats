@@ -1,6 +1,6 @@
 import React from 'react'
 import {ActivityIndicator, Dimensions, Image, StyleSheet, View} from 'react-native'
-import * as ZoomableImage from 'react-native-transformable-image'
+import PhotoView from 'react-native-photo-view'
 import Video from 'react-native-video'
 
 import {Images} from '/images'
@@ -115,7 +115,8 @@ class LoadingIndicator extends BaseComponent {
 
     render() {
         return (
-            <View style={stylesheet.floatingCenteringContainer}>
+            <View pointerEvents="none"
+                  style={stylesheet.floatingCenteringContainer}>
                 <ActivityIndicator animating={this.props.visible}
                                    color={Styles.Color.Grey200}
                                    size="large" />
@@ -198,17 +199,28 @@ class ImageMedia extends BaseComponent {
 
     renderZoomableImage() {
         return (
-            <ZoomableImage.default onLoadEnd={this.onLoadingEnded}
-                                   source={{ uri: this.props.url }}
-                                   style={stylesheet.fillScreen} />
+            <PhotoView androidScaleType="fitCenter"
+                       maximumZoomScale={5.0}
+                       minimumZoomScale={0.5}
+                       onLoadEnd={this.onLoadingEnded}
+                       source={{ uri: this.props.url }}
+                       style={stylesheet.fillScreen} />
         )
+    }
+
+    renderImage() {
+        if (this.props.fullScreen) {
+            return this.renderZoomableImage()
+        }
+
+        return this.renderSimpleImage()
     }
 
     render() {
         return (
             <View onLayout={this.onLayout}
                   style={getMediaContainerViewStyle(this.props, this.state)}>
-                {this.props.fullScreen ? this.renderZoomableImage() : this.renderSimpleImage()}
+                {this.state.layoutHeight && this.state.mediaHeight && this.renderImage()}
 
                 <LoadingIndicator visible={this.state.loading} />
             </View>

@@ -54,6 +54,9 @@ target ‘NewsCats’ do
   # RN video player support.
   pod 'react-native-video', :path => '../node_modules/react-native-video'
   
+  # Pinch-to-zoom image support.
+  pod 'react-native-photo-view', :path => '../node_modules/react-native-photo-view'
+  
   # Fabric support.
   pod 'Crashlytics'
   pod 'Fabric'

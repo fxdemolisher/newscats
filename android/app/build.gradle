@@ -138,6 +138,9 @@ dependencies {
     // Linear gradient support for RN.
     compile project(':react-native-linear-gradient')
 
+    // Pinch-to-zoom image support.
+    compile project(':react-native-photo-view')
+
     // React Native itself.
     compile "com.facebook.react:react-native:+"
 

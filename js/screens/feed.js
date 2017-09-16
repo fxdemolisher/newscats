@@ -60,6 +60,10 @@ const stylesheet = StyleSheet.create(styles)
  */
 class FeedItem extends BaseComponent {
     gotoDetails = () => {
+        if (this.props.onGotoDetails) {
+            this.props.onGotoDetails()
+        }
+
         const action = NavigationActions.navigate({
             routeName: 'details',
             params: { item: this.props.item },
@@ -164,10 +168,19 @@ class Feed extends BaseComponent {
         this.props.onNewViewableKeys(newViewableKeys)
     }
 
+    onGotoItemDetails = () => {
+        if (!this.list) {
+            return
+        }
+
+        this.list.recordInteraction()
+    }
+
     renderItem = ({item, index}) => {
         return (
             <FeedItem item={item}
-                      key={item.key} />
+                      key={item.key}
+                      onGotoDetails={this.onGotoItemDetails} />
         )
     }
 
@@ -184,6 +197,7 @@ class Feed extends BaseComponent {
                       initialNumToRender={2}
                       onRefresh={this.props.refresh}
                       onViewableItemsChanged={this.onViewableChanged}
+                      ref={(ref) => { this.list = ref }}
                       refreshing={this.props.refreshing}
                       renderItem={this.renderItem}
                       showsVerticalScrollIndicator={false}

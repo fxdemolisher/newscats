@@ -6,6 +6,7 @@ import com.BV.LinearGradient.LinearGradientPackage;
 import com.brentvatne.react.ReactVideoPackage;
 import com.facebook.react.ReactNativeHost;
 import com.facebook.react.ReactPackage;
+import com.reactnative.photoview.PhotoViewPackage;
 
 import java.util.Arrays;
 import java.util.List;
@@ -42,6 +43,9 @@ public class MainReactNativeHost extends ReactNativeHost {
 
             // Video player.
             new ReactVideoPackage(),
+
+            // Pinch-to-zoom image support.
+            new PhotoViewPackage(),
 
             // Customized view managers and this application's bridges.
             new ApplicationReactPackage()
