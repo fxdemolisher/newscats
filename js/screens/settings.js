@@ -172,6 +172,16 @@ class SettingsScreen extends BaseComponent {
             this.props.dispatch(Actions.toggleSource(pack.key, value))
         }
 
+        const previewPack = () => {
+            this.props.dispatch(NavigationActions.navigate({
+                routeName: 'preview',
+                params: {
+                    sourcePackKey: pack.key,
+                    sourcePackTitle: pack.title,
+                },
+            }))
+        }
+
         const additionalStyle = {
             opacity: (pack.enabled ? 1.0 : 0.6),
         }
@@ -187,8 +197,13 @@ class SettingsScreen extends BaseComponent {
                         value={pack.enabled} />
 
                 <Text style={[stylesheet.packText, additionalStyle]}>
-                    {pack.title} ({pack.sources.length})
+                    {pack.title}
                 </Text>
+
+                <ImageButton buttonStyle={{ tintColor: Styles.Color.Grey600 }}
+                             containerStyle={additionalStyle}
+                             imageSource={Images.preview}
+                             onPress={previewPack} />
             </View>
         )
     }

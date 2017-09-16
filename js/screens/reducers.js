@@ -154,3 +154,29 @@ export function sourcePacksDownloadReducer(state = initialSourcePacksDownloadSta
 
     return state
 }
+
+/**
+ * Previews starts uninitialized and empty.
+ */
+const initialPreviewState = {
+    status: Actions.FeedStatus.NotInitialized,
+    contents: [],
+    requestedKey: null,
+}
+
+/**
+ * The reducer for state.preview.
+ */
+export function previewReducer(state = initialPreviewState, action) {
+    switch (action.type) {
+        case Actions.Action.SetPreview:
+            return {
+                ...state,
+                status: action.status,
+                contents: action.contents,
+                requestedKey: action.requestedKey,
+            }
+    }
+
+    return state
+}

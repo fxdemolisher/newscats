@@ -14,6 +14,7 @@ export const Action = {
     RemoveFavorite: 'RemoveFavorite',
     MarkSeen: 'MarkSeen',
     SetSourcePacksDownloadStatus: 'SetSourcePacksDownloadStatus',
+    SetPreview: 'SetPreview',
 }
 
 /**
@@ -52,6 +53,8 @@ export function refreshFeed() {
 
         const seenKeySet = new Set(Object.keys(state.seenKeys))
         const sourcePacks = Object.values(state.sources)
+            .filter((pack) => (pack.enabled))
+
         refreshSources(sourcePacks, seenKeySet)
             .then((unseenItems) => {
                 dispatch({
@@ -159,5 +162,39 @@ export function markSeen(keys) {
             type: Action.MarkSeen,
             keys: keys,
         })
+    }
+}
+
+/**
+ * An action (thunk) that will start the refresh process of a preview feed with the given source pack key.
+ */
+export function refreshPreview(sourcePackKey) {
+    return (dispatch, getState) => {
+        dispatch({
+            type: Action.SetPreview,
+            status: FeedStatus.Refreshing,
+            contents: [],
+            requestedKey: sourcePackKey,
+        })
+
+        const state = getState()
+        const sourcePack = state.sources[sourcePackKey]
+
+        refreshSources([sourcePack], new Set())
+            .then((previewItems) => {
+                if (getState().preview.requestedKey != sourcePackKey) {
+                    return
+                }
+
+                dispatch({
+                    type: Action.SetPreview,
+                    status: FeedStatus.Ready,
+                    contents: previewItems,
+                    requestedKey: sourcePackKey,
+                })
+            })
+            .catch((err) => {
+                console.log("ERROR: ", err)
+            })
     }
 }

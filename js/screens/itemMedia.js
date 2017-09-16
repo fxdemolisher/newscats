@@ -142,11 +142,20 @@ class ImageMedia extends BaseComponent {
     constructor(props) {
         super(props)
 
+        this.mounted = false
         this.state = { loading: true }
+    }
+
+    componentWillMount() {
+        this.mounted = true
 
         Image.getSize(
             this.props.url,
             (width, height) => {
+                if (!this.mounted) {
+                    return
+                }
+
                 this.setState({
                     mediaHeight: height,
                     mediaWidth: width,
@@ -156,6 +165,10 @@ class ImageMedia extends BaseComponent {
                 console.log("WARNING: failed to retrieve image dimensions.")
             }
         )
+    }
+
+    componentWillUnmount() {
+        this.mounted = false
     }
 
     onLoadingEnded = () => {

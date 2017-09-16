@@ -7,10 +7,6 @@ import {toFeed} from './sourceParsers'
 export function refreshSources(sourcePacks, seenKeysSet) {
     const sourceFeeds = []
     sourcePacks.forEach((pack) => {
-        if (!pack.enabled) {
-            return
-        }
-
         pack.sources.forEach((source) => {
             const sourceFeed = sourceToFeed(pack, source)
             sourceFeeds.push(sourceFeed)

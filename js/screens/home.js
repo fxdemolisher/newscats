@@ -72,7 +72,7 @@ class HeaderActions extends BaseComponent {
 HeaderActions = connect()(HeaderActions)
 
 /**
- * A screen to display the current feed of items from our sources, with pull to refresh funcationality.
+ * A screen to display the current feed of items from our sources, with pull to refresh functionality.
  */
 class HomeScreen extends BaseComponent {
     static navigationOptions = {
@@ -104,7 +104,6 @@ class HomeScreen extends BaseComponent {
             <View style={stylesheet.container}>
                 <Feed empty={empty}
                       contents={this.props.feed.contents}
-                      favoritesKeys={this.props.favoriteKeys}
                       onNewViewableKeys={this.onNewViewableKeys}
                       refresh={this.refresh}
                       refreshing={this.props.feed.status == Actions.FeedStatus.Refreshing} />

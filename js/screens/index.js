@@ -11,7 +11,15 @@ import {DebugScreen} from './debug'
 import {DetailsScreen} from './details'
 import {FavoritesScreen} from './favorites'
 import {HomeScreen} from './home'
-import {favoritesReducer, feedReducer, seenKeysReducer, sourcePacksDownloadReducer, sourcesReducer} from './reducers'
+import {PreviewScreen} from './preview'
+import {
+    favoritesReducer,
+    feedReducer,
+    previewReducer,
+    seenKeysReducer,
+    sourcePacksDownloadReducer,
+    sourcesReducer
+} from './reducers'
 import {SettingsScreen} from './settings'
 
 const styles = {
@@ -93,6 +101,10 @@ const RootNavigation = StackNavigator(
             screen: DebugScreen,
             path: '/debug',
         },
+        preview: {
+            screen: PreviewScreen,
+            path: '/preview',
+        },
     },
 
     // Navigation config.
@@ -158,6 +170,7 @@ const rootReducer = combineReducers({
     favorites: favoritesReducer,
     feed: feedReducer,
     nav: navReducer,
+    preview: previewReducer,
     seenKeys: seenKeysReducer,
     sourcePacksDownload: sourcePacksDownloadReducer,
     sources: sourcesReducer,
