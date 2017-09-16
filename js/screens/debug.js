@@ -28,6 +28,15 @@ const styles = {
 
 const stylesheet = StyleSheet.create(styles)
 
+// Set of whitelisted environment field names that are allowed to be shown for non debug environments.
+const WHITELISTED_ENVIRONMENT_FIELDS = new Set([
+    'build',
+    'bundleId',
+    'installationId',
+    'name',
+    'version',
+])
+
 /**
  * Component for the header reset button.
  */
@@ -89,9 +98,14 @@ class DebugScreen extends BaseComponent {
     }
 
     renderFields() {
+        const isDebug = (this.state.env.name == 'debug')
         return Object.keys(this.state.env)
             .sort()
             .map((key) => {
+                if (!isDebug && !WHITELISTED_ENVIRONMENT_FIELDS.has(key)) {
+                    return null
+                }
+
                 const value = this.state.env[key]
 
                 return (
