@@ -24,7 +24,7 @@ const styles = {
         right: 0,
         top: 0,
     },
-    playIcon: {
+    playPauseIcon: {
         height: 96,
         tintColor: Styles.Color.Grey200,
         width: 96,
@@ -249,11 +249,13 @@ class VideoMedia extends BaseComponent {
         this.setState({ paused: !this.state.paused })
     }
 
-    renderPlayButton() {
+    renderPlayPauseOverlay() {
+        const source = (this.state.paused ? Images.play : null)
+
         return (
-            <ImageButton buttonStyle={stylesheet.playIcon}
+            <ImageButton buttonStyle={stylesheet.playPauseIcon}
                          containerStyle={stylesheet.floatingCenteringContainer}
-                         imageSource={Images.play}
+                         imageSource={source}
                          onPress={this.togglePaused}
                          styleMode="replace" />
         )
@@ -275,7 +277,7 @@ class VideoMedia extends BaseComponent {
 
                 <LoadingIndicator visible={this.state.loading} />
 
-                {!this.state.loading && this.state.paused && this.renderPlayButton()}
+                {!this.state.loading && this.renderPlayPauseOverlay()}
             </View>
         )
     }
