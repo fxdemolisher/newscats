@@ -72,7 +72,7 @@ class HeaderActions extends BaseComponent {
     shareItem = () => {
         Share.share({
             title: this.props.item.title,
-            message: this.props.item.url,
+            message: this.props.item.url + ' (via NewsCats)',
         })
     }
 
