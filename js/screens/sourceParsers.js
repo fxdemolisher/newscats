@@ -29,7 +29,12 @@ const ParserToFunction = {
  * of items that can be displayed in our feed.
  */
 export function toFeed(source, responseBody) {
-    return ParserToFunction[source.parser](responseBody)
+    const parser = ParserToFunction[source.parser]
+    if (!parser) {
+        return Promise.resolve([])
+    }
+
+    return parser(responseBody)
 }
 
 /**

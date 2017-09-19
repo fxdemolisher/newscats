@@ -80,6 +80,12 @@ class HomeScreen extends BaseComponent {
         headerRight: (<HeaderActions />),
     }
 
+    componentWillMount() {
+        // Start source pack download on start up.
+        const action = Actions.downloadLatestSourcePacks()
+        this.props.dispatch(action)
+    }
+
     refresh = () => {
         this.props.dispatch(Actions.refreshFeed())
     }

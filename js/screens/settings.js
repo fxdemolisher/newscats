@@ -1,5 +1,5 @@
 import React from 'react'
-import {Animated, Easing, ScrollView, StyleSheet, Switch, Text, View} from 'react-native'
+import {Alert, Animated, Easing, ScrollView, StyleSheet, Switch, Text, View} from 'react-native'
 import {NavigationActions} from 'react-navigation'
 import {connect} from 'react-redux'
 
@@ -64,6 +64,16 @@ class HeaderActions extends BaseComponent {
     componentWillReceiveProps(nextProps) {
         if (nextProps.status == Actions.SourcePacksDownloadStatus.Downloading) {
             this.startPulseAnimation()
+        }
+
+        if (nextProps.status == Actions.SourcePacksDownloadStatus.Idle &&
+                this.props.status == Actions.SourcePacksDownloadStatus.Downloading) {
+            Alert.alert(
+                'Download Done',
+                'Finished downloading fresh sources',
+                [ {text: 'Got it',  style: 'cancel'} ],
+                { cancelable: true }
+            )
         }
     }
 
