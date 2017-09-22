@@ -51,7 +51,7 @@ function redditJsonToFeed(jsonString) {
         const preview = entry.data.preview.images[0]
         const itemUrl = 'https://www.reddit.com' + entry.data.permalink
 
-        // Extract main image and it's preview image at a reasonable resolution.
+        // Extract main image and its preview image at a reasonable resolution.
         let mediaType = ItemMediaType.Image
         let mediaUrl = preview.source.url
         let previewUrl = mediaUrl

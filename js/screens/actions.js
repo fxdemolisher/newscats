@@ -1,4 +1,5 @@
 import {refreshSources} from './feedFetcher'
+import * as Integrations from './integrations'
 import {parseSourcePacks} from './packParsers'
 
 /**
@@ -132,24 +133,28 @@ export function downloadLatestSourcePacks() {
 /**
  * Returns an action (thunk) that adds the given item to the favorites set.
  */
-export function addFavorite(item) {
+export function addFavorite(item, oauth) {
     return (dispatch) => {
         dispatch({
             type: Action.AddFavorite,
             item: item,
         })
+
+        Integrations.onItemFavorite(item, oauth)
     }
 }
 
 /**
  * Returns an action (thunk) that removes a favorite from the favorites set.
  */
-export function removeFavorite(item) {
+export function removeFavorite(item, oauth) {
     return (dispatch) => {
         dispatch({
             type: Action.RemoveFavorite,
             key: item.key,
         })
+
+        Integrations.onItemUnfavorite(item, oauth)
     }
 }
 

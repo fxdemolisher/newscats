@@ -313,7 +313,7 @@ class VideoMedia extends BaseComponent {
  */
 class ItemMedia extends BaseComponent {
     static defaultProps = {
-        // The background color in case the media doesn't fill it's parent fully.
+        // The background color in case the media doesn't fill its parent fully.
         backgroundColor: Styles.Color.Black,
 
         // If true, we are displaying the image in full screen mode.

@@ -36,8 +36,7 @@ public class Environment {
     /**
      * Serializes the environment to a JSONObject instance.
      *
-     * NOTE: If your project uses another JSON serialization library, just modify this function and
-     *       it's usages.
+     * NOTE: If your project uses another JSON serialization library, just modify this function and its usages.
      */
     public JSONObject toJsonObject() throws JSONException {
         return new JSONObject()

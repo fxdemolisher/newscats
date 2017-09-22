@@ -75,7 +75,7 @@ class FeedItem extends BaseComponent {
     toggleFavorite = () => {
         if (this.props.favorite) {
             const remove = () => {
-                this.props.dispatch(Actions.removeFavorite(this.props.item))
+                this.props.dispatch(Actions.removeFavorite(this.props.item, this.props.oauth))
             }
 
             Alert.alert(
@@ -85,7 +85,7 @@ class FeedItem extends BaseComponent {
                 { cancelable: true }
             )
         } else {
-            this.props.dispatch(Actions.addFavorite(this.props.item))
+            this.props.dispatch(Actions.addFavorite(this.props.item, this.props.oauth))
         }
     }
 
@@ -141,6 +141,7 @@ class FeedItem extends BaseComponent {
 const mapStateToProps = (state, ownProps) => {
     return {
         favorite: !!(state.favorites[ownProps.item.key]),
+        oauth: state.oauth,
     }
 }
 

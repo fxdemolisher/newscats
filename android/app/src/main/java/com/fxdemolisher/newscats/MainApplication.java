@@ -20,6 +20,7 @@ public class MainApplication extends Application implements ReactApplication {
     private ReactNativeHost host;
     private GlobalConfig globalConfig;
     private Environment environment;
+    private AuthenticationManager authenticationManager;
 
     @Override
     public void onCreate() {
@@ -33,6 +34,9 @@ public class MainApplication extends Application implements ReactApplication {
 
         // Initialize the environment.
         resetEnvironment();
+
+        // Initialize the auth manager.
+        authenticationManager = new AuthenticationManager(this, environment);
 
         // Initialize the RN host.
         host = new MainReactNativeHost(this);
@@ -49,6 +53,10 @@ public class MainApplication extends Application implements ReactApplication {
 
     public Environment getEnvironment() {
         return environment;
+    }
+
+    public AuthenticationManager getAuthenticationManager() {
+        return authenticationManager;
     }
 
     public void resetEnvironment() {

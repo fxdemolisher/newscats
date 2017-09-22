@@ -7,9 +7,11 @@ import {connect} from 'react-redux'
 import {Styles} from '/styles'
 import {BaseComponent} from '/widgets'
 
+import {ConnectedAccountsSettingsScreen} from './connectedAccountsSettings'
 import {DebugScreen} from './debug'
 import {DetailsScreen} from './details'
 import {FavoritesScreen} from './favorites'
+import {FeedSourcesSettingsScreen} from './feedSourcesSettings'
 import {HomeScreen} from './home'
 import {PreviewScreen} from './preview'
 import {
@@ -105,6 +107,14 @@ const RootNavigation = StackNavigator(
             screen: PreviewScreen,
             path: '/preview',
         },
+        feedSourceSettings: {
+            screen: FeedSourcesSettingsScreen,
+            path: '/settings/feedSources',
+        },
+        connectedAccountsSettings: {
+            screen: ConnectedAccountsSettingsScreen,
+            path: '/settings/connectedAccounts',
+        }
     },
 
     // Navigation config.
@@ -170,6 +180,7 @@ const rootReducer = combineReducers({
     favorites: favoritesReducer,
     feed: feedReducer,
     nav: navReducer,
+    oauth: (state = {}) => (state), // Required so that the oauth manager is available everywhere.
     preview: previewReducer,
     seenKeys: seenKeysReducer,
     sourcePacksDownload: sourcePacksDownloadReducer,

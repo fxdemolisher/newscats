@@ -79,7 +79,8 @@ android {
         versionName = project.ext.applicationVersionName
 
         manifestPlaceholders = [
-            fabricApiKey: fabricApiKey
+            appAuthRedirectScheme: applicationId,
+            fabricApiKey: fabricApiKey,
         ]
 
         ndk {
@@ -108,6 +109,7 @@ android {
     buildTypes {
         debug {
             applicationIdSuffix ".dev"
+            manifestPlaceholders['appAuthRedirectScheme'] = applicationId + ".dev"
 
             buildConfigField "String", "ENVIRONMENT_NAME", '"debug"'
         }
@@ -135,6 +137,11 @@ android {
 }
 
 dependencies {
+    // App compat include since we exclude it as multiple transitive dependencies.
+    compile 'com.android.support:appcompat-v7:25.3.1'
+    compile 'com.android.support:support-v4:25.3.1'
+    compile 'com.android.support:support-compat:25.3.1'
+
     // Linear gradient support for RN.
     compile project(':react-native-linear-gradient')
 
@@ -142,10 +149,23 @@ dependencies {
     compile project(':react-native-photo-view')
 
     // React Native itself.
-    compile "com.facebook.react:react-native:+"
+    compile("com.facebook.react:react-native:+") {
+        exclude group: 'com.android.support', module: 'appcompat-v7'
+        exclude group: 'com.android.support', module: 'support-v4'
+        exclude group: 'com.android.support', module: 'support-annotations'
+        exclude group: 'com.android.support', module: 'support-compat'
+    }
 
     // RN video player support.
     compile project(':react-native-video')
+
+    // Native OAuth2 support.
+    compile('net.openid:appauth:0.7.0') {
+        exclude group: 'com.android.support', module: 'appcompat-v7'
+        exclude group: 'com.android.support', module: 'support-v4'
+        exclude group: 'com.android.support', module: 'support-annotations'
+        exclude group: 'com.android.support', module: 'support-compat'
+    }
 
     // Fabric support
     compile('com.crashlytics.sdk.android:crashlytics:2.6.8@aar') { transitive = true }

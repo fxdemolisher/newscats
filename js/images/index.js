@@ -1,4 +1,5 @@
 const Images = {
+    chevronRight: require('./icon-chevron-right.png'),
     download: require('./icon-download.png'),
     filter: require('./icon-filter.png'),
     info: require('./icon-info.png'),

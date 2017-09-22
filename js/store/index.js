@@ -7,6 +7,7 @@ import createMigration from 'redux-persist-migrate'
 import thunk from 'redux-thunk'
 
 import {migrationManifest} from './migrations'
+import {OAuthManager} from './oauth'
 
 /**
  * Wrapper around a redux store with a few things embedded.
@@ -29,7 +30,14 @@ import {migrationManifest} from './migrations'
 class Store {
     constructor(rootReducer, rehydrationListener) {
         // Creates our Redux store, using composed middleware to allow persistance.
-        this.store = createStore(rootReducer, { storage: this }, this.createMiddleware(migrationManifest))
+        this.store = createStore(
+            rootReducer,
+            {
+                oauth: new OAuthManager(),
+                storage: this,
+            },
+            this.createMiddleware(migrationManifest)
+        )
 
         // Start periodically persisting the store to storage.
         this.persistor = persistStore(this.store, this.createPersistorConfig(), rehydrationListener)
@@ -69,10 +77,11 @@ class Store {
             //
             // - 'feed' is ignored since we refresh it every time
             // - 'nav' is ignored so that navigation state doesn't persist
+            // - 'oauth' is ignored, just a convenience property for the oauth manager
             // - 'preview' is ignored so that we don't store it needlessly
             // - 'sourcePacksDownload' is ignored because it's transitory
             // - 'storage' is ignored since it is just a convenience state property to allow access to this instance.
-            blacklist: ['feed', 'nav', 'preview', 'sourcePacksDownload', 'storage'],
+            blacklist: ['feed', 'nav', 'oauth', 'preview', 'sourcePacksDownload', 'storage'],
 
             // Debounce interval (ms) between store calls.
             debounce: 250,

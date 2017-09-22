@@ -28,7 +28,12 @@ public class ApplicationReactPackage extends LazyReactPackage {
 
             // Navigation bridge:
             //   - restart() = restarts the RN app.
-            createBridgeModuleSpec(new NavigationBridge(reactContext))
+            createBridgeModuleSpec(new NavigationBridge(reactContext)),
+
+            // Authentication bridge:
+            //   - isAuthorized(provider) = gets authorization state for a provider.
+            //   - deauthorize(provider) = disconnects from a provider.
+            createBridgeModuleSpec(new AuthenticationBridge(reactContext))
         );
     }
 

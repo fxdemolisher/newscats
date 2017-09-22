@@ -43,9 +43,9 @@ const WHITELISTED_ENVIRONMENT_FIELDS = new Set([
 class ResetButton extends BaseComponent {
     fullReset = () => {
         const reset = () => {
-            this.props.storage
-                .persistor
-                .purge()
+            NativeModules.auth
+                .reset()
+                .then(() => (this.props.storage.persistor.purge()))
                 .then(() => { NativeModules.nav.restart() })
         }
 
