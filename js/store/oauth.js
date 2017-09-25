@@ -17,12 +17,14 @@ class OAuthManager {
 
     onReady() {
         // Reddit.
-        NativeModules.auth.isConfigured('reddit')
-            .then((result) => {
-                if (!result) {
-                    this.configureRedditProvider()
-                }
-            })
+        if (this.config.redditClientId) {
+            NativeModules.auth.isConfigured('reddit')
+                .then((result) => {
+                    if (!result) {
+                        this.configureRedditProvider()
+                    }
+                })
+        }
     }
 
     configureRedditProvider() {
@@ -37,6 +39,18 @@ class OAuthManager {
                 'https://www.reddit.com/api/v1/access_token',
                 Platform.OS + ':' + bundleId + ':' + version + ' (by /u/' + author + ')'
             )
+            .catch((err) => {
+                console.log("ERROR: ", err)
+            })
+    }
+
+    isProviderConfigured(provider) {
+        if (!NativeModules.auth) {
+            return Promise.resolve(false)
+        }
+
+        return NativeModules.auth
+            .isConfigured(provider)
             .catch((err) => {
                 console.log("ERROR: ", err)
             })

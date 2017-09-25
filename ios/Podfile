@@ -60,5 +60,9 @@ target ‘NewsCats’ do
   # Fabric support.
   pod 'Crashlytics'
   pod 'Fabric'
+  
+  # OAuth2 native support.
+  pod 'AppAuth'
+  pod 'SwiftKeychainWrapper'
 
 end

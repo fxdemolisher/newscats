@@ -45,6 +45,22 @@ then
     )
 fi
 
+REDDIT_API_SECTION=""
+if [ ! -z ${REDDIT_CLIENT_ID} ] && [ ! -z ${DEBUG_REDDIT_CLIENT_ID} ] 
+then
+    echo "Found reddit API info"
+    REDDIT_API_SECTION=$(cat << EOF
+        <key>REDDIT_CLIENT_ID</key>
+        <string>${REDDIT_CLIENT_ID}</string>
+        <key>REDDIT_CLIENT_USERNAME</key>
+        <string>${REDDIT_CLIENT_USERNAME}</string>
+        <key>DEBUG_REDDIT_CLIENT_ID</key>
+        <string>${DEBUG_REDDIT_CLIENT_ID}</string>
+        <key>DEBUG_REDDIT_CLIENT_USERNAME</key>
+        <string>${DEBUG_REDDIT_CLIENT_USERNAME}</string>
+    )
+fi
+
 CONFIG_PLIST="${SRCROOT}/NewsCats/GlobalConfig-Info.plist"
 echo "Writing global config plist: $CONFIG_PLIST"
 
@@ -56,6 +72,7 @@ cat << EOF > "${CONFIG_PLIST}"
 <dict>
 $FABRIC_SECTION
 $BUILD_MACHINE_OVERRIDE_SECTION
+$REDDIT_API_SECTION
 </dict>
 </plist>
 EOF

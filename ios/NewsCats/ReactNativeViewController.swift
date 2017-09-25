@@ -6,12 +6,19 @@ import UIKit
  * A view controller that hosts our entire react native app.
  */
 class ReactNativeViewController : UIViewController, RCTBridgeDelegate {
+    var authenticationBridge: AuthenticationBridge?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
         // Grab the last known launch options from the app delegate.
         let appDelegate = UIApplication.shared.delegate as! AppDelegate
         let launchOptions = appDelegate.latestKnownLaunchOptions
+        
+        // Create the authentication bridge instance since it needs a view controller.
+        // Add it as a listener of our global authentication manager as well.
+        authenticationBridge = AuthenticationBridge(self)
+        appDelegate.authenticationManager!.addListener(authenticationBridge!)
         
         // Create the RN bridge, listing ourselves as the delegate, which allows us to configure the bridge.
         let bridge = RCTBridge(delegate: self, launchOptions: launchOptions)
@@ -27,6 +34,19 @@ class ReactNativeViewController : UIViewController, RCTBridgeDelegate {
         reactNativeView.backgroundColor = .black
         
         self.view = reactNativeView
+    }
+    
+    /**
+     * Perform some listener cleanup before we are deinited.
+     */
+    deinit {
+        guard let appDelegate = UIApplication.shared.delegate as? AppDelegate,
+              let manager = appDelegate.authenticationManager,
+              let bridge = authenticationBridge else {
+            return
+        }
+        
+        manager.removeListener(bridge)
     }
     
     /**
@@ -60,6 +80,7 @@ class ReactNativeViewController : UIViewController, RCTBridgeDelegate {
             //       or method, or they will not be visible in RN.
             EnvironmentBridge(),
             NavigationBridge(),
+            authenticationBridge!,
         ]
     }
 }

@@ -12,6 +12,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var window: UIWindow?
     var globalConfig: GlobalConfigManager.GlobalConfig?
     var environment: EnvironmentManager.Environment?
+    var authenticationManager: AuthenticationManager?
+    
     var latestKnownLaunchOptions: [UIApplicationLaunchOptionsKey: Any]?
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
@@ -27,7 +29,21 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         // Save last launch options for the RN view controller to use later.
         self.latestKnownLaunchOptions = launchOptions
+        
+        // Initialize the authentication manager.
+        authenticationManager = AuthenticationManager(environment!)
 
+        return true
+    }
+    
+    func application(_ app: UIApplication,
+                     open url: URL,
+                     options: [UIApplicationOpenURLOptionsKey : Any]) -> Bool {
+        guard let manager = authenticationManager, manager.hasOngoingSession() else {
+            return false
+        }
+        
+        manager.resumeOngoingSession(with: url)
         return true
     }
     

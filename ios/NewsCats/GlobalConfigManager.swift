@@ -11,6 +11,8 @@ struct GlobalConfigManager {
     struct GlobalConfig {
         let fabricApiKey: String?
         let buildMachineIpOverride: String?
+        let redditClientId: String?
+        let redditClientUsername: String?
     }
 
     /**
@@ -18,20 +20,33 @@ struct GlobalConfigManager {
      * during the build process.
      */
     static func create() -> GlobalConfig {
+        let environmentName = Bundle.main.infoDictionary!["ENVIRONMENT_NAME"] as! String
+        
         var fabricApiKey: String? = nil
         var buildMachineIpOverride: String? = nil
+        var redditClientId: String? = nil
+        var redditClientUsername: String? = nil
         
         if let path = Bundle.main.path(forResource: "GlobalConfig-Info", ofType: "plist") {
             let infoDict = NSDictionary(contentsOfFile: path) as! [String : Any]
             fabricApiKey = infoDict["FABRIC_API_KEY"] as? String
             buildMachineIpOverride = infoDict["BUILD_MACHINE_IP_OVERRIDE"] as? String
+            
+            redditClientId = infoDict["REDDIT_CLIENT_ID"] as? String
+            redditClientUsername = infoDict["REDDIT_CLIENT_USERNAME"] as? String
+            if (environmentName == "debug") {
+                redditClientId = infoDict["DEBUG_REDDIT_CLIENT_ID"] as? String
+                redditClientUsername = infoDict["DEBUG_REDDIT_CLIENT_USERNAME"] as? String
+            }
         } else {
             print ("WARNING: No global config found, skipping initialization")
         }
         
         return GlobalConfig(
             fabricApiKey: fabricApiKey,
-            buildMachineIpOverride: buildMachineIpOverride
+            buildMachineIpOverride: buildMachineIpOverride,
+            redditClientId: redditClientId,
+            redditClientUsername: redditClientUsername
         )
     }
 }
@@ -51,9 +66,21 @@ extension GlobalConfigManager.GlobalConfig : JSONEncodable {
             buildMachineIpOverrideJson = .string(buildMachineIpOverrideActual)
         }
         
+        var redditClientIdJson: JSON = .null
+        if let redditClientIdActual = redditClientId {
+            redditClientIdJson = .string(redditClientIdActual)
+        }
+        
+        var redditClientUsernameJson: JSON = .null
+        if let redditClientUsernameActual = redditClientUsername {
+            redditClientUsernameJson = .string(redditClientUsernameActual)
+        }
+        
         return .dictionary([
             "fabricApiKey": fabricApiKeyJson,
             "buildMachineIpOverride": buildMachineIpOverrideJson,
+            "redditClientId": redditClientIdJson,
+            "redditClientUsername": redditClientUsernameJson,
         ])
     }
 }

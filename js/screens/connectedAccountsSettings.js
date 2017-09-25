@@ -1,5 +1,16 @@
 import React from 'react'
-import {Alert, DeviceEventEmitter, ScrollView, StyleSheet, Switch, Text, View} from 'react-native'
+import {
+    Alert,
+    DeviceEventEmitter,
+    NativeModules,
+    NativeEventEmitter,
+    Platform,
+    ScrollView,
+    StyleSheet,
+    Switch,
+    Text,
+    View,
+} from 'react-native'
 import {connect} from 'react-redux'
 
 import {Styles} from '/styles'
@@ -53,19 +64,25 @@ class ConnectedAccountsSettingsScreen extends BaseComponent {
     constructor(props) {
         super(props)
 
-        this.state = { }
+        this.state = {
+            configurationStatus: {},
+            connectionStatus: {},
+        }
+
         this.mounted = false
     }
 
     componentWillMount() {
         this.mounted = true
 
-        this.subscription = DeviceEventEmitter.addListener(
-            'onAuthorizationProviderStateChanged',
-            this.refreshEnabledStatus
-        )
+        const emitter = Platform.select({
+            android: DeviceEventEmitter,
+            ios: new NativeEventEmitter(NativeModules.auth),
+        })
 
-        this.refreshEnabledStatus()
+        this.subscription = emitter.addListener('onAuthorizationProviderStateChanged', this.refreshStatuses)
+
+        this.refreshStatuses()
     }
 
     componentWillUnmount() {
@@ -76,22 +93,52 @@ class ConnectedAccountsSettingsScreen extends BaseComponent {
         }
     }
 
-    refreshEnabledStatus = () => {
+    refreshStatuses = () => {
         if (!this.mounted) {
             return
         }
 
-        ConnectedAccountsSettingsScreen.availableAccounts.forEach((account) => {
-            this.props.oauth
-                .isProviderConnected(account.provider)
-                .then((result) => {
-                    this.setState({ [account.provider]: result })
-                })
-        })
+        ConnectedAccountsSettingsScreen.availableAccounts
+            .forEach((account) => {
+                const onConnectionStatus = (result) => {
+                    this.setState({
+                        connectionStatus: {
+                            ...this.state.connectionStatus,
+                            [account.provider]: result,
+                        }
+                    })
+                }
+
+                const onConfigurationStatus = (result) => {
+                    this.setState({
+                        configurationStatus: {
+                            ...this.state.configurationStatus,
+                            [account.provider]: result,
+                        }
+                    })
+
+                    if (!result) {
+                        return
+                    }
+
+                    this.props.oauth
+                        .isProviderConnected(account.provider)
+                        .then(onConnectionStatus)
+                }
+
+                this.props.oauth
+                    .isProviderConfigured(account.provider)
+                    .then(onConfigurationStatus)
+            }
+        )
     }
 
     renderAccount(account) {
-        const enabled = !!this.state[account.provider]
+        if (!this.state.configurationStatus[account.provider]) {
+            return null
+        }
+
+        const enabled = !!this.state.connectionStatus[account.provider]
 
         const toggleAccount = (value) => {
             const toggler = (enabled ? this.props.oauth.disconnect : this.props.oauth.connect)

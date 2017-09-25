@@ -10,6 +10,9 @@ enum BridgeMethodWrappedPerformer {
     // A call from JS to native, providing a callback function to call on completion.
     // NOTE(gennadiy): The completion callback is expected to accept two parameters: error and result, in node.js style.
     case callback((RCTBridge, [Any], @escaping (Any?, Any?) -> Void) throws -> Void)
+    
+    // A call from JS to native, expecting a returned promise.
+    case promise((RCTBridge, [Any], @escaping RCTPromiseResolveBlock, @escaping RCTPromiseRejectBlock) throws -> Void)
 }
 
 /**
@@ -24,8 +27,16 @@ class BridgeMethodWrapper : NSObject, RCTBridgeMethod {
         self.performer = performer
     }
     
-    public var jsMethodName: UnsafePointer<Int8>! { return UnsafePointer<Int8>(name) }
-    public var functionType: RCTFunctionType { return .normal }
+    public var jsMethodName: UnsafePointer<Int8>! {
+        return UnsafePointer<Int8>(name)
+    }
+    
+    public var functionType: RCTFunctionType {
+        switch performer {
+            case .promise: return .promise
+            default: return .normal
+        }
+    }
     
     /**
      * Called by the RN bridge to invoke the native function wrapped by this instance.
@@ -52,6 +63,27 @@ class BridgeMethodWrapper : NSObject, RCTBridgeMethod {
                 }
             
                 try! closure(bridge, closureArgs, callbackClosure)
+                return Void()
+            
+            case let .promise(closure):
+                let closureArgs = Array<Any>(arguments.prefix(upTo: arguments.count - 2))
+                
+                let resolveBlockCallbackId = arguments[arguments.count - 2] as! NSNumber
+                let resolveBlock: RCTPromiseResolveBlock = { value in
+                    bridge.enqueueCallback(resolveBlockCallbackId, args: [value ?? ""])
+                }
+                
+                let rejectBlockCallbackId = arguments[arguments.count - 1] as! NSNumber
+                let rejectBlock: RCTPromiseRejectBlock = { tag, message, error in
+                    bridge.enqueueCallback(rejectBlockCallbackId, args: [tag!, message!, error!])
+                }
+                
+                do {
+                    try closure(bridge, closureArgs, resolveBlock, rejectBlock)
+                } catch let error {
+                    rejectBlock("bridgeError", "Failed to call bridge function", error)
+                }
+                
                 return Void()
         }
     }

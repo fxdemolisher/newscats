@@ -1,4 +1,5 @@
 PODS:
+  - AppAuth (0.90.0)
   - BVLinearGradient (2.3.0):
     - React
   - Crashlytics (3.8.6):
@@ -46,9 +47,11 @@ PODS:
   - React/RCTWebSocket (0.48.3):
     - React/Core
     - React/RCTBlob
+  - SwiftKeychainWrapper (3.0.1)
   - Yoga (0.48.3.React)
 
 DEPENDENCIES:
+  - AppAuth
   - BVLinearGradient (from `../node_modules/react-native-linear-gradient`)
   - Crashlytics
   - Fabric
@@ -68,6 +71,7 @@ DEPENDENCIES:
   - React/RCTPushNotification (from `../node_modules/react-native`)
   - React/RCTText (from `../node_modules/react-native`)
   - React/RCTWebSocket (from `../node_modules/react-native`)
+  - SwiftKeychainWrapper
   - Yoga (from `../node_modules/react-native/ReactCommon/yoga`)
 
 EXTERNAL SOURCES:
@@ -83,6 +87,7 @@ EXTERNAL SOURCES:
     :path: ../node_modules/react-native/ReactCommon/yoga
 
 SPEC CHECKSUMS:
+  AppAuth: f0bc91f392ab9eb1cf3150b26d5d7f326fc7c04d
   BVLinearGradient: e5b57d7ae2011487190ad11ed2e73edccdfc25fa
   Crashlytics: 95d05f4e4c19a771250c4bd9ce344d996de32bbf
   Fabric: 2fb5676bc811af011a04513451f463dac6803206
@@ -90,8 +95,9 @@ SPEC CHECKSUMS:
   React: 748a63a3a08cef2864657ad752a5ca7393e07fc2
   react-native-photo-view: b50cecb78958f36a73d5c7851c2d74718cf1da21
   react-native-video: 77f73e3867d91ed4147a6444d4da227fe8ee7404
+  SwiftKeychainWrapper: 38952a3636320ae61bad3513cadd870929de7a4a
   Yoga: b3337798e426de90f48662cf0fe2ee1a844075e1
 
-PODFILE CHECKSUM: 79c81018c0a47b59a7fdc2dc427584cdbd2117c2
+PODFILE CHECKSUM: bbe3f68ed2f7fdca3f43afed01710f43862d79f0
 
 COCOAPODS: 1.3.1
