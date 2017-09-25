@@ -48,7 +48,7 @@ allprojects {
     ext {
       // Application identity.
       applicationId = 'com.fxdemolisher.newscats'
-      applicationVersionName = "0.0.2"
+      applicationVersionName = "0.0.3"
       applicationVersionCode = 3
 
       // Properties loaded from our environment file.
