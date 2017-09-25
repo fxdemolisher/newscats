@@ -49,7 +49,7 @@ allprojects {
       // Application identity.
       applicationId = 'com.fxdemolisher.newscats'
       applicationVersionName = "0.0.3"
-      applicationVersionCode = 3
+      applicationVersionCode = 4
 
       // Properties loaded from our environment file.
       globalConfig = globalProps

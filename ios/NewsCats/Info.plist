@@ -30,7 +30,7 @@
 		</dict>
 	</array>
 	<key>CFBundleVersion</key>
-	<string>3</string>
+	<string>4</string>
 	<key>ENVIRONMENT_NAME</key>
 	<string>${ENVIRONMENT_NAME}</string>
 	<key>LSRequiresIPhoneOS</key>
