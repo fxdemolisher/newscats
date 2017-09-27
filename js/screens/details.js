@@ -1,5 +1,5 @@
 import React from 'react'
-import {Alert, Linking, Share, StyleSheet, Text, TouchableWithoutFeedback, View} from 'react-native'
+import {Alert, Dimensions, Linking, Share, StyleSheet, Text, TouchableWithoutFeedback, View} from 'react-native'
 
 import {Constants} from '/constants'
 import {Images} from '/images'
@@ -109,6 +109,9 @@ class DetailsScreen extends BaseComponent {
 
         return {
             gesturesEnabled: true,
+            gestureResponseDistance: {
+                horizontal: Dimensions.get('window').width * 0.85,
+            },
             headerTitle: (
                 <DetailsScreenHeader subTitle={subTitle}
                                      title={item.title} />
