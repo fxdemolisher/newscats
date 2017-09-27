@@ -3,11 +3,12 @@ import {ActivityIndicator, Dimensions, Image, StyleSheet, View} from 'react-nati
 import PhotoView from 'react-native-photo-view'
 import Video from 'react-native-video'
 
+import {Constants} from '/constants'
 import {Images} from '/images'
 import {Styles} from '/styles'
-import {BaseComponent, ImageButton} from '/widgets'
 
-import {ItemMediaType} from './sourceParsers'
+import {BaseComponent} from './BaseComponent'
+import {ImageButton} from './ImageButton'
 
 const styles = {
     fillScreen: {
@@ -328,10 +329,10 @@ class ItemMedia extends BaseComponent {
 
     render() {
         switch (this.props.mediaType) {
-            case ItemMediaType.Image:
+            case Constants.Feed.MediaType.Image:
                 return (<ImageMedia {...this.props} />)
 
-            case ItemMediaType.VideoMp4:
+            case Constants.Feed.MediaType.VideoMp4:
                 return (<VideoMedia {...this.props} />)
 
             default:

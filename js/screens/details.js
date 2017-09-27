@@ -1,11 +1,10 @@
 import React from 'react'
-import {Alert, Linking, Platform, Share, StyleSheet, Text, TouchableWithoutFeedback, View, WebView} from 'react-native'
+import {Alert, Linking, Share, StyleSheet, Text, TouchableWithoutFeedback, View} from 'react-native'
 
+import {Constants} from '/constants'
 import {Images} from '/images'
 import {Styles} from '/styles'
-import {BaseComponent, ImageButton} from '/widgets'
-
-import {ItemMedia} from './itemMedia'
+import {BaseComponent, ImageButton, ItemMedia} from '/widgets'
 
 const styles = {
     headerActions: {

@@ -3,11 +3,11 @@ import {Alert, Animated, Easing, ScrollView, StyleSheet, Switch, Text, View} fro
 import {NavigationActions} from 'react-navigation'
 import {connect} from 'react-redux'
 
+import {Actions} from '/actions'
+import {Constants} from '/constants'
 import {Images} from '/images'
 import {Styles} from '/styles'
 import {BaseComponent, ImageButton} from '/widgets'
-
-import * as Actions from './actions'
 
 const styles = {
     list: {
@@ -51,7 +51,7 @@ class DownloadPacksButton extends BaseComponent {
     componentWillMount() {
         this.mounted = true
 
-        if (this.props.status == Actions.SourcePacksDownloadStatus.Downloading) {
+        if (this.props.status == Constants.SourcePacks.DownloadStatus.Downloading) {
             this.startPulseAnimation()
         }
     }
@@ -61,12 +61,12 @@ class DownloadPacksButton extends BaseComponent {
     }
 
     componentWillReceiveProps(nextProps) {
-        if (nextProps.status == Actions.SourcePacksDownloadStatus.Downloading) {
+        if (nextProps.status == Constants.SourcePacks.DownloadStatus.Downloading) {
             this.startPulseAnimation()
         }
 
-        if (nextProps.status == Actions.SourcePacksDownloadStatus.Idle &&
-                this.props.status == Actions.SourcePacksDownloadStatus.Downloading) {
+        if (nextProps.status == Constants.SourcePacks.DownloadStatus.Idle &&
+                this.props.status == Constants.SourcePacks.DownloadStatus.Downloading) {
             Alert.alert(
                 'Download Done',
                 'Finished downloading fresh sources',
@@ -90,7 +90,7 @@ class DownloadPacksButton extends BaseComponent {
             }
         )
         .start(() => {
-            if (!this.mounted || this.props.status != Actions.SourcePacksDownloadStatus.Downloading) {
+            if (!this.mounted || this.props.status != Constants.SourcePacks.DownloadStatus.Downloading) {
                 return
             }
 
@@ -99,11 +99,11 @@ class DownloadPacksButton extends BaseComponent {
     }
 
     downloadPacks = () => {
-        if (this.props.status == Actions.SourcePacksDownloadStatus.Downloading) {
+        if (this.props.status == Constants.SourcePacks.DownloadStatus.Downloading) {
             return
         }
 
-        const action = Actions.downloadLatestSourcePacks()
+        const action = Actions.SourcePacks.downloadLatest()
         this.props.dispatch(action)
     }
 
@@ -114,9 +114,9 @@ class DownloadPacksButton extends BaseComponent {
         })
 
         let tintColor = Styles.Color.White
-        if (this.props.status == Actions.SourcePacksDownloadStatus.Error) {
+        if (this.props.status == Constants.SourcePacks.DownloadStatus.Error) {
             tintColor = Styles.Color.Amber500
-        } else if (this.props.status == Actions.SourcePacksDownloadStatus.Downloading) {
+        } else if (this.props.status == Constants.SourcePacks.DownloadStatus.Downloading) {
             tintColor = Styles.Color.Grey100
         }
 
@@ -168,7 +168,7 @@ class FeedSourcesSettingsScreen extends BaseComponent {
 
     renderPack(pack) {
         const togglePack = (value) => {
-            this.props.dispatch(Actions.toggleSource(pack.key, value))
+            this.props.dispatch(Actions.SourcePacks.toggle(pack.key, value))
         }
 
         const previewPack = () => {

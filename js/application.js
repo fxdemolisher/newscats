@@ -2,9 +2,10 @@ import React from 'react'
 import {Animated, AppStat, Easing, Image, StyleSheet, View} from 'react-native'
 import {Provider} from 'react-redux'
 
+import {Actions} from '/actions'
+import {Constants} from '/constants'
 import {Images} from '/images'
 import {RootComponent, rootReducer} from '/screens'
-import {FeedStatus, refreshFeed} from '/screens/actions'
 import {Store} from '/store'
 import {Styles} from '/styles'
 import {BaseComponent} from '/widgets'
@@ -54,7 +55,7 @@ class Application extends BaseComponent {
             .subscribe(() => {
                 const state = this.storage.store.getState()
                 const feedStatus = state.feed.status
-                if (feedStatus != FeedStatus.Ready) {
+                if (feedStatus != Constants.Feed.Status.Ready) {
                     return
                 }
 
@@ -62,7 +63,7 @@ class Application extends BaseComponent {
                 this.setState({ isInitialFeedLoadDone: true })
             })
 
-        this.storage.store.dispatch(refreshFeed())
+        this.storage.store.dispatch(Actions.Feed.refresh())
     }
 
     startSplashAnimation() {

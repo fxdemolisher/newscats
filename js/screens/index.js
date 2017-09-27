@@ -4,6 +4,7 @@ import {NavigationActions, StackNavigator, addNavigationHelpers} from 'react-nav
 import {combineReducers} from 'redux'
 import {connect} from 'react-redux'
 
+import {Reducers} from '/reducers'
 import {Styles} from '/styles'
 import {BaseComponent} from '/widgets'
 
@@ -14,14 +15,6 @@ import {FavoritesScreen} from './favorites'
 import {FeedSourcesSettingsScreen} from './feedSourcesSettings'
 import {HomeScreen} from './home'
 import {PreviewScreen} from './preview'
-import {
-    favoritesReducer,
-    feedReducer,
-    previewReducer,
-    seenKeysReducer,
-    sourcePacksDownloadReducer,
-    sourcesReducer
-} from './reducers'
 import {SettingsScreen} from './settings'
 
 const styles = {
@@ -176,16 +169,16 @@ const navReducer = (state = initialNavState, action) => {
 
 // Create a root reducer, made up of all the other reducers.
 const rootReducer = combineReducers({
-    app: (state = { }) => (state), // No-op reducer for migration versioning.
-    favorites: favoritesReducer,
-    feed: feedReducer,
+    app: Reducers.Noop, // No-op reducer for migration versioning.
+    favorites: Reducers.Favorites,
+    feed: Reducers.Feed.Feed,
     nav: navReducer,
-    oauth: (state = {}) => (state), // Required so that the oauth manager is available everywhere.
-    preview: previewReducer,
-    seenKeys: seenKeysReducer,
-    sourcePacksDownload: sourcePacksDownloadReducer,
-    sources: sourcesReducer,
-    storage: (state = {}) => (state), // Required so that storage is available everywhere.
+    oauth: Reducers.Noop, // Required so that the oauth manager is available everywhere.
+    preview: Reducers.Feed.Preview,
+    seenKeys: Reducers.Feed.SeenKeys,
+    sourcePacksDownload: Reducers.SourcePacks.Download,
+    sources: Reducers.SourcePacks.Sources,
+    storage: Reducers.Noop, // Required so that storage is available everywhere.
 })
 
 export {

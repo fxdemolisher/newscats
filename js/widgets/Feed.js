@@ -1,14 +1,15 @@
 import React from 'react'
-import {Alert, Dimensions, FlatList, Image, StyleSheet, Text, TouchableWithoutFeedback, View} from 'react-native'
+import {Alert, FlatList, StyleSheet, Text, TouchableWithoutFeedback, View} from 'react-native'
 import {NavigationActions} from 'react-navigation'
 import {connect} from 'react-redux'
 
+import {Actions} from '/actions'
 import {Images} from '/images'
 import {Styles} from '/styles'
-import {BaseComponent, ImageButton} from '/widgets'
 
-import * as Actions from './actions'
-import {ItemMedia} from './itemMedia'
+import {BaseComponent} from './BaseComponent'
+import {ImageButton} from './ImageButton'
+import {ItemMedia} from './ItemMedia'
 
 const styles = {
     card: {
@@ -75,7 +76,7 @@ class FeedItem extends BaseComponent {
     toggleFavorite = () => {
         if (this.props.favorite) {
             const remove = () => {
-                this.props.dispatch(Actions.removeFavorite(this.props.item, this.props.oauth))
+                this.props.dispatch(Actions.Favorites.remove(this.props.item, this.props.oauth))
             }
 
             Alert.alert(
@@ -85,7 +86,7 @@ class FeedItem extends BaseComponent {
                 { cancelable: true }
             )
         } else {
-            this.props.dispatch(Actions.addFavorite(this.props.item, this.props.oauth))
+            this.props.dispatch(Actions.Favorites.add(this.props.item, this.props.oauth))
         }
     }
 

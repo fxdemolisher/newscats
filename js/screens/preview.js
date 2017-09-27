@@ -2,11 +2,10 @@ import React from 'react'
 import {StyleSheet, View} from 'react-native'
 import {connect} from 'react-redux'
 
+import {Actions} from '/actions'
+import {Constants} from '/constants'
 import {Styles} from '/styles'
-import {BaseComponent} from '/widgets'
-
-import * as Actions from './actions'
-import {Feed} from './feed'
+import {BaseComponent, Feed} from '/widgets'
 
 const styles = {
     container: {
@@ -41,7 +40,7 @@ class PreviewScreen extends BaseComponent {
         }
 
         const sourcePackKey = this.props.navigation.state.params.sourcePackKey
-        this.props.dispatch(Actions.refreshPreview(sourcePackKey))
+        this.props.dispatch(Actions.Feed.refreshPreview(sourcePackKey))
 
         this.startedRefresh = true
     }
@@ -51,7 +50,7 @@ class PreviewScreen extends BaseComponent {
             <View style={stylesheet.container}>
                 <Feed contents={this.props.preview.contents}
                       refresh={() => {}}
-                      refreshing={this.props.preview.status == Actions.FeedStatus.Refreshing} />
+                      refreshing={this.props.preview.status == Constants.Feed.Status.Refreshing} />
             </View>
         )
     }

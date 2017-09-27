@@ -3,12 +3,11 @@ import {Dimensions, StyleSheet, Text, View} from 'react-native'
 import {NavigationActions} from 'react-navigation'
 import {connect} from 'react-redux'
 
+import {Actions} from '/actions'
+import {Constants} from '/constants'
 import {Images} from '/images'
 import {Styles} from '/styles'
-import {BaseComponent, ImageButton} from '/widgets'
-
-import * as Actions from './actions'
-import {Feed} from './feed'
+import {BaseComponent, Feed, ImageButton} from '/widgets'
 
 const styles = {
     container: {
@@ -82,16 +81,16 @@ class HomeScreen extends BaseComponent {
 
     componentWillMount() {
         // Start source pack download on start up.
-        const action = Actions.downloadLatestSourcePacks()
+        const action = Actions.SourcePacks.downloadLatest()
         this.props.dispatch(action)
     }
 
     refresh = () => {
-        this.props.dispatch(Actions.refreshFeed())
+        this.props.dispatch(Actions.Feed.refresh())
     }
 
     onNewViewableKeys = (keys) => {
-        this.props.dispatch(Actions.markSeen(keys))
+        this.props.dispatch(Actions.Feed.markItemsSeen(keys))
     }
 
     render() {
@@ -112,7 +111,7 @@ class HomeScreen extends BaseComponent {
                       contents={this.props.feed.contents}
                       onNewViewableKeys={this.onNewViewableKeys}
                       refresh={this.refresh}
-                      refreshing={this.props.feed.status == Actions.FeedStatus.Refreshing} />
+                      refreshing={this.props.feed.status == Constants.Feed.Status.Refreshing} />
             </View>
         )
     }

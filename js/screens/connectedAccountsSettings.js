@@ -16,8 +16,6 @@ import {connect} from 'react-redux'
 import {Styles} from '/styles'
 import {BaseComponent} from '/widgets'
 
-import * as Actions from './actions'
-
 const styles = {
     list: {
         backgroundColor: Styles.Color.White,

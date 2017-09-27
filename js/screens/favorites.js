@@ -2,11 +2,8 @@ import React from 'react'
 import {Dimensions, StyleSheet, Text, View} from 'react-native'
 import {connect} from 'react-redux'
 
-import {Images} from '/images'
 import {Styles} from '/styles'
-import {BaseComponent, ImageButton} from '/widgets'
-
-import {Feed} from './feed'
+import {BaseComponent, Feed} from '/widgets'
 
 const styles = {
     container: {
