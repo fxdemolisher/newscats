@@ -97,7 +97,7 @@ class HomeScreen extends BaseComponent {
         const empty = (
             <View style={stylesheet.empty}>
                 <Text style={stylesheet.emptyMain}>
-                    New cats and kittens will appear here.
+                    New pics and videos from your sources will appear here.
                 </Text>
                 <Text style={stylesheet.emptySub}>
                     You can also add new sources in settings.

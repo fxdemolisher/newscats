@@ -80,7 +80,7 @@ class FavoritesScreen extends BaseComponent {
         const empty = (
             <View style={stylesheet.empty}>
                 <Text style={stylesheet.emptyText}>
-                    Your favorites cats will appear here.
+                    Your favorites pics and videos will appear here.
                 </Text>
             </View>
         )

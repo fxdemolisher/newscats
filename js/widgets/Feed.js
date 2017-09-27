@@ -81,7 +81,7 @@ class FeedItem extends BaseComponent {
 
             Alert.alert(
                 'Unfavor',
-                'Are you sure you want to unfavor this cat?',
+                'Are you sure you want to unfavor this item?',
                 [ {text: 'Cancel',  style: 'cancel'}, {text: 'Unfavor', onPress: remove} ],
                 { cancelable: true }
             )
