@@ -54,7 +54,7 @@ class ProviderConfiguration : NSObject, NSSecureCoding {
 /**
  * Wrapper around a map of provider->ProviderConfiguration that use used for coded peristance.
  */
-fileprivate class PersistentStorage : NSObject, NSSecureCoding {
+class PersistentStorage : NSObject, NSSecureCoding {
     let storage: [String: ProviderConfiguration]
     
     public static var supportsSecureCoding: Bool { return true }
